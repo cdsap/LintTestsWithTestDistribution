@@ -48,37 +48,37 @@ resulting in visual issues or elements that can't be interacted with.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/foo/test.kt:10:Error: Content padding parameter it is not used
+src/test/foo/test.kt:10:Error: Content padding parameter it is not used
 [UnusedMaterialScaffoldPaddingParameter]
     Scaffold { /**/ }
              --------
-src/foo/test.kt:11:Error: Content padding parameter it is not used
+src/test/foo/test.kt:11:Error: Content padding parameter it is not used
 [UnusedMaterialScaffoldPaddingParameter]
     Scaffold(Modifier) { /**/ }
                        --------
-src/foo/test.kt:12:Error: Content padding parameter it is not used
+src/test/foo/test.kt:12:Error: Content padding parameter it is not used
 [UnusedMaterialScaffoldPaddingParameter]
     Scaffold(Modifier, topBar = {}, bottomBar = {}) { /**/ }
                                                     --------
-src/foo/test.kt:13:Error: Content padding parameter it is not used
+src/test/foo/test.kt:13:Error: Content padding parameter it is not used
 [UnusedMaterialScaffoldPaddingParameter]
     Scaffold(Modifier, topBar = {}, bottomBar = {}, content = { /**/ })
                                                               --------
-src/foo/test.kt:14:Error: Content padding parameter _ is not used
+src/test/foo/test.kt:14:Error: Content padding parameter _ is not used
 [UnusedMaterialScaffoldPaddingParameter]
     Scaffold(Modifier, topBar = {}, bottomBar = {}) { _ -&gt; /**/ }
                                                       -
-src/foo/test.kt:15:Error: Content padding parameter innerPadding is not
-used [UnusedMaterialScaffoldPaddingParameter]
+src/test/foo/test.kt:15:Error: Content padding parameter innerPadding is
+not used [UnusedMaterialScaffoldPaddingParameter]
     Scaffold(Modifier, topBar = {}, bottomBar = {}) { innerPadding -&gt; /**/ }
                                                       ------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
-`src/foo/test.kt`:
+`src/test/foo/test.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
-package foo
+package test.foo
 
 import androidx.compose.material.*
 import androidx.compose.runtime.*
@@ -93,7 +93,7 @@ fun Test() {
     Scaffold(Modifier, topBar = {}, bottomBar = {}) { _ -> /**/ }
     Scaffold(Modifier, topBar = {}, bottomBar = {}) { innerPadding -> /**/ }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/material/material-lint/src/test/java/androidx/compose/material/lint/ScaffoldPaddingDetectorTest.kt)
@@ -112,17 +112,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.material:material-android:1.9.0-alpha01")
+implementation("androidx.compose.material:material-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.material:material-android:1.9.0-alpha01'
+implementation 'androidx.compose.material:material-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.material.android)
 
 # libs.versions.toml
 [versions]
-material-android = "1.9.0-alpha01"
+material-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -134,11 +134,11 @@ material-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.material:material-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.material:material-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.material:material-android](androidx_compose_material_material-android.md.html).

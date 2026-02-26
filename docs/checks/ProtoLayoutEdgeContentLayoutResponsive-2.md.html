@@ -1,0 +1,330 @@
+<meta charset="utf-8">
+(#) ProtoLayout Material EdgeContentLayout should be used with responsivebehaviour to ensure the best behaviour across different screen sizes andlocales
+
+!!! WARNING: ProtoLayout Material EdgeContentLayout should be used with responsivebehaviour to ensure the best behaviour across different screen sizes andlocales
+   This is a warning.
+
+Id
+:   `ProtoLayoutEdgeContentLayoutResponsive`
+Summary
+:   ProtoLayout Material EdgeContentLayout should be used with responsivebehaviour to ensure the best behaviour across different screen sizes andlocales
+Severity
+:   Warning
+Category
+:   Correctness
+Platform
+:   Android
+Vendor
+:   Android Open Source Project
+Identifier
+:   androidx.wear.protolayout
+Feedback
+:   https://issuetracker.google.com/issues/new?component=1112273
+Min
+:   Lint 8.7+
+Compiled
+:   Lint 8.7+
+Artifact
+:   [androidx.wear.protolayout:protolayout](androidx_wear_protolayout_protolayout.md.html)
+Since
+:   1.2.0
+Affects
+:   Kotlin and Java files
+Editing
+:   This check runs on the fly in the IDE editor
+Implementation
+:   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/wear/protolayout/protolayout-lint/src/main/java/androidx/wear/protolayout/lint/ResponsiveLayoutDetector.kt)
+Tests
+:   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/wear/protolayout/protolayout-lint/src/test/java/EdgeContentLayoutResponsiveDetectorTest.kt)
+Copyright Year
+:   2024
+
+It is highly recommended to use the latest
+setResponsiveInsetEnabled(true) when you're
+using the ProtoLayout's EdgeContentLayout.
+
+This is will take care of all outer margins and inner padding to ensure
+that content of
+labels doesn't go off the screen (especially with different locales) and
+that primary
+label is placed in the consistent place.
+
+!!! Tip
+   This lint check has an associated quickfix available in the IDE.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+src/foo/Bar.kt:4:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+val layout = EdgeContentLayout.Builder(null)
+             -------------------------
+src/foo/Bar.kt:9:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+ val layout = EdgeContentLayout.Builder(null)
+              -------------------------
+src/foo/Bar.kt:12:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+ val layoutFalse = EdgeContentLayout.Builder(null)
+                   -------------------------
+src/foo/Bar.kt:17:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    val l = EdgeContentLayout.Builder(null)
+            -------------------------
+src/foo/Bar.kt:24:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    EdgeContentLayout.Builder().setResponsiveContentInsetEnabled(enabled)
+    -------------------------
+src/foo/Bar.kt:32:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    return EdgeContentLayout.Builder().build()
+           -------------------------
+src/foo/Bar.kt:36:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    EdgeContentLayout.Builder()
+    -------------------------
+src/foo/Bar.kt:42:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    random(EdgeContentLayout.Builder())
+           -------------------------
+src/foo/Bar.kt:47:Warning: EdgeContentLayout used, but responsiveness
+isn't set: Please call
+setResponsiveContentInsetEnabled(true) for the best results across
+different screen sizes and update to the looks of layout.
+[ProtoLayoutEdgeContentLayoutResponsive]
+    val e = EdgeContentLayout.Builder()
+            -------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here are the relevant source files:
+
+`src/androidx/wear/protolayout/material/layouts/EdgeContentLayout.java`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java linenumbers
+package androidx.wear.protolayout.material.layouts;
+
+import androidx.wear.protolayout.DeviceParameters;
+
+public class EdgeContentLayout {
+    public static class Builder {
+        public Builder(DeviceParameters deviceParameters) {}
+        public Builder() {}
+
+        public Builder setResponsiveContentInsetEnabled(boolean enabled) {
+            return this;
+        }
+
+        public EdgeContentLayout build() {
+            return new EdgeContentLayout();
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`src/foo/Bar.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+package foo
+import androidx.wear.protolayout.material.layouts.EdgeContentLayout
+
+val layout = EdgeContentLayout.Builder(null)
+        .setResponsiveContentInsetEnabled(false)
+        .build()
+
+class Bar {
+ val layout = EdgeContentLayout.Builder(null)
+        .build()
+
+ val layoutFalse = EdgeContentLayout.Builder(null)
+            .setResponsiveContentInsetEnabled(false)
+        .build()
+
+    fun buildFalse() {
+        val l = EdgeContentLayout.Builder(null)
+            .setResponsiveContentInsetEnabled(false)
+        return l.build()
+    }
+
+    fun update() {
+        val enabled = false
+        EdgeContentLayout.Builder().setResponsiveContentInsetEnabled(enabled)
+    }
+
+    fun build() {
+        update().build()
+    }
+
+    fun build2() {
+        return EdgeContentLayout.Builder().build()
+    }
+
+    fun doubleFalse() {
+        EdgeContentLayout.Builder()
+            .setResponsiveContentInsetEnabled(true)
+            .setResponsiveContentInsetEnabled(false)
+    }
+
+    fun callRandom() {
+      random(EdgeContentLayout.Builder())
+    }
+    fun random(val l: EdgeContentLayout.Builder) {}
+
+    fun condition(val cond: Boolean) {
+        val e = EdgeContentLayout.Builder()
+        if (cond) {
+          e.setResponsiveContentInsetEnabled(false)
+        } else {
+          e.setResponsiveContentInsetEnabled(true)
+        }
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/wear/protolayout/protolayout-lint/src/test/java/EdgeContentLayoutResponsiveDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `ResponsiveLayoutDetector.edgeContentLayout without responsiveness requires and fixes setter`.
+To report a problem with this extracted sample, visit
+https://issuetracker.google.com/issues/new?component=1112273.
+
+(##) Repackaged
+
+This lint check appears to have been packaged in other artifacts as
+well. Issue id's must be unique, so you cannot combine these libraries.
+Also defined in:
+* ProtoLayoutEdgeContentLayoutResponsive: ProtoLayout Material EdgeContentLayout should be used with responsivebehaviour to ensure the best behaviour across different screen sizes andlocales (this issue)
+* [ProtoLayoutEdgeContentLayoutResponsive from androidx.wear.protolayout:protolayout-expression:1.4.0-rc01](ProtoLayoutEdgeContentLayoutResponsive.md.html)
+* [ProtoLayoutEdgeContentLayoutResponsive from androidx.wear.protolayout:protolayout:1.3.0-beta01](ProtoLayoutEdgeContentLayoutResponsive-2.md.html)
+
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("androidx.wear.protolayout:protolayout:1.3.0-beta01")
+
+// build.gradle
+implementation 'androidx.wear.protolayout:protolayout:1.3.0-beta01'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.protolayout)
+
+# libs.versions.toml
+[versions]
+protolayout = "1.3.0-beta01"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+protolayout = {
+    module = "androidx.wear.protolayout:protolayout",
+    version.ref = "protolayout"
+}
+```
+
+1.3.0-beta01 is the version this documentation was generated from;
+there may be newer versions available.
+
+NOTE: These lint checks are **also** made available separate from the main library.
+Use one of the following artifacts:
+* `androidx.wear.protolayout:protolayout-material3:1.3.0-beta01`
+* `androidx.wear.protolayout:protolayout-material:1.3.0-beta01`
+
+
+[Additional details about androidx.wear.protolayout:protolayout](androidx_wear_protolayout_protolayout.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("ProtoLayoutEdgeContentLayoutResponsive")
+  fun method() {
+     Builder(...)
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("ProtoLayoutEdgeContentLayoutResponsive")
+  void method() {
+     new Builder(...);
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection ProtoLayoutEdgeContentLayoutResponsive
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="ProtoLayoutEdgeContentLayoutResponsive" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'ProtoLayoutEdgeContentLayoutResponsive'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore ProtoLayoutEdgeContentLayoutResponsive ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

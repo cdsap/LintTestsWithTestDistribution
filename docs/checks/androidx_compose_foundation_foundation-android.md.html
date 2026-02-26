@@ -19,7 +19,7 @@ Min
 Compiled
 :   Lint 8.7+
 Artifact
-:   androidx.compose.foundation:foundation-android:1.9.0-alpha01
+:   androidx.compose.foundation:foundation-android:1.11.0-alpha06
 
 (##) Included Issues
 
@@ -36,17 +36,17 @@ Artifact
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.foundation:foundation-android:1.9.0-alpha01")
+implementation("androidx.compose.foundation:foundation-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.foundation:foundation-android:1.9.0-alpha01'
+implementation 'androidx.compose.foundation:foundation-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.foundation.android)
 
 # libs.versions.toml
 [versions]
-foundation-android = "1.9.0-alpha01"
+foundation-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -58,11 +58,11 @@ foundation-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.foundation:foundation-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.foundation:foundation-lint:1.11.0-alpha06`.
 
 
 (##) Changes
@@ -71,7 +71,7 @@ You can also use `androidx.compose.foundation:foundation-lint:1.9.0-alpha01`.
   UseOfNonLambdaOffsetOverload.
 * 1.6.0: Adds UnrememberedMutableInteractionSource,
   UnusedBoxWithConstraintsScope.
-* 1.9.0-alpha01: Removes FrequentlyChangedStateReadInComposition,
+* 1.9.0: Removes FrequentlyChangedStateReadInComposition,
   UnrememberedMutableInteractionSource.
 
 (##) Version Compatibility
@@ -80,7 +80,26 @@ There are multiple older versions available of this library:
 
 | Version            | Date     | Issues | Compatible | Compiled      | Requires |
 |-------------------:|----------|-------:|------------|--------------:|---------:|
-|       1.9.0-alpha01|2025/04/23|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha06|2026/02/25|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha05|2026/02/11|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha04|2026/01/29|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha03|2026/01/14|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha02|2025/12/17|       2|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha01|2025/12/03|       2|         Yes|           8.7+|      8.7+|
+|              1.10.4|2026/02/25|       2|         Yes|           8.7+|      8.7+|
+|              1.10.3|2026/02/11|       2|         Yes|           8.7+|      8.7+|
+|              1.10.2|2026/01/29|       2|         Yes|           8.7+|      8.7+|
+|              1.10.1|2026/01/14|       2|         Yes|           8.7+|      8.7+|
+|              1.10.0|2025/12/03|       2|         Yes|           8.7+|      8.7+|
+|               1.9.5|2025/11/19|       2|         Yes|           8.7+|      8.7+|
+|               1.9.4|2025/10/22|       2|         Yes|           8.7+|      8.7+|
+|               1.9.3|2025/10/08|       2|         Yes|           8.7+|      8.7+|
+|               1.9.2|2025/09/24|       2|         Yes|           8.7+|      8.7+|
+|               1.9.1|2025/09/10|       2|         Yes|           8.7+|      8.7+|
+|               1.9.0|2025/08/13|       2|         Yes|           8.7+|      8.7+|
+|               1.8.3|2025/06/18|       4|         Yes|           8.7+|8.0 and 8.1|
+|               1.8.2|2025/05/20|       4|         Yes|           8.7+|8.0 and 8.1|
+|               1.8.1|2025/05/07|       4|         Yes|           8.7+|8.0 and 8.1|
 |               1.8.0|2025/04/23|       4|         Yes|           8.7+|8.0 and 8.1|
 |               1.7.8|2025/02/12|       4|         Yes|    8.0 and 8.1|8.0 and 8.1|
 |               1.7.7|2025/01/29|       4|         Yes|    8.0 and 8.1|8.0 and 8.1|

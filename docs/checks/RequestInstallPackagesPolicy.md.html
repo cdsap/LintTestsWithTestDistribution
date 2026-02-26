@@ -1,0 +1,222 @@
+<meta charset="utf-8">
+(#) Request Install Packages Insights
+
+!!! WARNING: Request Install Packages Insights
+   This is a warning.
+
+Id
+:   `RequestInstallPackagesPolicy`
+Summary
+:   Request Install Packages Insights
+Severity
+:   Warning
+Category
+:   Play Policy
+Platform
+:   Android
+Vendor
+:   Play policy insights beta
+Min
+:   Lint 8.2 to 8.6
+Compiled
+:   Lint 8.7+
+Artifact
+:   [com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html)
+Since
+:   0.1.3
+Affects
+:   Kotlin and Java files and manifest files
+Editing
+:   This check runs on the fly in the IDE editor
+
+`REQUEST_INSTALL_PACKAGES` permission allows apps to request the
+installation of other app packages. This permission is restricted to the
+app's core functionality, specifically when the primary purpose directly
+involves sending, receiving, or enabling user-initiated installation of
+app packages. Using this permission to update your app, change its
+functionality or bundle other APKs for silent or unauthorized
+installation (except enterprise management) is prohibited. All
+installations must be a direct, active choice by the user. Apps
+targeting Android 8+ must hold this permission in order to use
+`Intent.ACTION_INSTALL_PACKAGE.`
+
+**Dos:**
+
+- Clearly and prominently document the core functionality requiring this
+  permission in your app’s Play Store description and when you submit
+  a declaration form in your Play Console.
+- Adhere strictly to the permitted functionalities including web
+  browsing/search, file sharing/transfer/management, enterprise device
+  management, backup/restore, device migration/phone transfer,
+  companion app to sync phone to wearable or IoT device.
+- Ensure your app prevents background or unintended installations. All
+  app package installations must be explicitly initiated by the user.
+
+**Don'ts:**
+
+- Request this permission for a functionality that is not directly
+  related to the primary purpose of your app. This includes
+  Peer-to-Peer (P2P) sharing. P2P must be the primary purpose of the
+  app in order to qualify as a permitted use.
+- Request this permission when the required task can be done with a less
+  intrusive method.
+- Change how your app uses this permission without first revising your
+  Play Console declaration with updated and accurate information.
+  Deceptive and undeclared uses of this permission are prohibited.
+
+**Helpful Links:**
+
+See Policy page: https://goo.gle/play-policy-request-install-packages
+See developer guidance: https://goo.gle/dac-request-install-packages
+See Declaration form:  https://goo.gle/play-permission-decl-form
+
+Always review the full policy in the Policy Center to ensure
+compliance.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+AndroidManifest.xml:3:Warning: REQUEST_INSTALL_PACKAGES is restricted to
+specific core functionalities and must be user-initiated. No
+self-updates, unauthorized installs, or APK bundling.
+[RequestInstallPackagesPolicy]
+  &lt;uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/&gt;
+                   ----------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`AndroidManifest.xml`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+  &lt;uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/&gt;
+&lt;/manifest&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](/policyinsights/src/test/java/com/google/play/policy/insights/RequestInstallPackagesPolicyDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `RequestInstallPackagesPolicyDetector.testFlagsRequestInstallPackages`.
+To report a problem with this extracted sample, contact
+Play policy insights beta.
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("com.google.play.policy.insights:insights-lint:0.1.4")
+
+// build.gradle
+implementation 'com.google.play.policy.insights:insights-lint:0.1.4'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.insights.lint)
+
+# libs.versions.toml
+[versions]
+insights-lint = "0.1.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+insights-lint = {
+    module = "com.google.play.policy.insights:insights-lint",
+    version.ref = "insights-lint"
+}
+```
+
+0.1.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+[Additional details about com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Adding the suppression attribute
+  `tools:ignore="RequestInstallPackagesPolicy"` on the problematic XML
+  element (or one of its enclosing elements). You may also need to add
+  the following namespace declaration on the root element in the XML
+  file if it's not already there:
+  `xmlns:tools="http://schemas.android.com/tools"`.
+
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;manifest xmlns:tools="http://schemas.android.com/tools"&gt;
+      ...
+      &lt;uses-permission tools:ignore="RequestInstallPackagesPolicy" .../&gt;
+    ...
+  &lt;/manifest&gt;
+  ```
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("RequestInstallPackagesPolicy")
+  fun method() {
+     commit(...)
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("RequestInstallPackagesPolicy")
+  void method() {
+     commit(...);
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection RequestInstallPackagesPolicy
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="RequestInstallPackagesPolicy" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'RequestInstallPackagesPolicy'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore RequestInstallPackagesPolicy ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

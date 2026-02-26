@@ -1,0 +1,163 @@
+<meta charset="utf-8">
+(#) Missing space in text concatenation?
+
+!!! WARNING: Missing space in text concatenation?
+   This is a warning.
+
+Id
+:   `TextConcatSpace`
+Summary
+:   Missing space in text concatenation?
+Severity
+:   Warning
+Category
+:   Correctness
+Platform
+:   Any
+Vendor
+:   Android Open Source Project
+Feedback
+:   https://issuetracker.google.com/issues/new?component=192708
+Since
+:   9.0.0 (January 2026)
+Affects
+:   Kotlin and Java files
+Editing
+:   This check runs on the fly in the IDE editor
+Implementation
+:   [Source Code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-checks/src/main/java/com/android/tools/lint/checks/TextConcatDetector.kt)
+Tests
+:   [Source Code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/TextConcatDetectorTest.kt)
+
+When splitting strings up across separate lines, it's easy to
+accidentally miss a separating space. This lint check looks for cases of
+string concatenation where a separating space may be missing.
+
+!!! Tip
+   This lint check has an associated quickfix available in the IDE.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+src/test/pkg/Test.java:6:Warning: Missing space between "is" on the
+previous line and "a" here? Resulting string is "isa".
+[TextConcatSpace]
+    "a second line"; // ERROR 1
+    ---------------
+src/test/pkg/Test.java:8:Warning: Missing space between "is" on the
+previous line and "a" here? Resulting string is "isa".
+[TextConcatSpace]
+    "a polyadic" // ERROR 2
+    ------------
+src/test/pkg/Test.java:9:Warning: Missing space between "polyadic" on
+the previous line and "expression" here? Resulting string is
+"polyadicexpression". [TextConcatSpace]
+    + "expression"; // ERROR 3
+      ------------
+src/test/pkg/test.kt:5:Warning: Missing space between "is" on the
+previous line and "a" here? Resulting string is "isa".
+[TextConcatSpace]
+    "a second line" // ERROR 4
+     -------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here are the relevant source files:
+
+`src/test/pkg/Test.java`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java linenumbers
+package test.pkg;
+
+public class Test {
+    public void test() {
+        String s = "This is" +
+          "a second line"; // ERROR 1
+        String s = "This is" +
+          "a polyadic" // ERROR 2
+            + "expression"; // ERROR 3
+        String t = "This is" + "same line"; // OK
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+`src/test/pkg/test.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+package test.pkg
+
+fun test() {
+        val s = "This is" +
+          "a second line" // ERROR 4
+        val t = "This is" + "same line" // OK 2
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/TextConcatDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("TextConcatSpace")
+  fun method() {
+     problematicStatement()
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("TextConcatSpace")
+  void method() {
+     problematicStatement();
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection TextConcatSpace
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="TextConcatSpace" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'TextConcatSpace'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore TextConcatSpace ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

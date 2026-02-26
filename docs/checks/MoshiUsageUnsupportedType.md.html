@@ -68,7 +68,7 @@ src/slack/model/Example.kt:15:Error: This type cannot be annotated with
 @JsonClass. [MoshiUsageUnsupportedType]
   @JsonClass(generateAdapter = true)
   ----------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -90,8 +90,11 @@ class Example {
 
   @JsonClass(generateAdapter = true)
   interface UnsupportedInterface
+
+  @JsonClass(generateAdapter = false)
+  interface UnsupportedInterfaceButGenerateAdapterIsFalseIsOk
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/MoshiUsageDetectorTest.kt)

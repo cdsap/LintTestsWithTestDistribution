@@ -37,7 +37,7 @@ Editing
 Implementation
 :   [Source Code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/main/java/slack/lint/mocking/MockDetector.kt)
 Tests
-:   [Source Code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/mocking/DoNotMockMockDetectorTest.kt)
+:   [Source Code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/mocking/MockDetectorOptionsTest.kt)
 Copyright Year
 :   2021
 
@@ -67,7 +67,7 @@ Example `lint.xml`:
         &lt;option name="mock-annotations" value=""org.mockito.Mock,org.mockito.Spy"" /&gt;
     &lt;/issue&gt;
 &lt;/lint&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (###) mock-factories
 
@@ -84,7 +84,7 @@ Example `lint.xml`:
         &lt;option name="mock-factories" value=""org.mockito.Mockito#mock,org.mockito.Mockito#spy,slack.test.mockito.MockitoHelpers#mock,slack.test.mockito.MockitoHelpersKt#mock,org.mockito.kotlin.MockingKt#mock,org.mockito.kotlin.SpyingKt#spy"" /&gt;
     &lt;/issue&gt;
 &lt;/lint&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (###) mock-report
 
@@ -101,7 +101,112 @@ Example `lint.xml`:
         &lt;option name="mock-report" value=""none"" /&gt;
     &lt;/issue&gt;
 &lt;/lint&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+test/slack/test/MyTests.kt:62:Error: platform type
+'java.lang.Comparable' should not be mocked [DoNotMockPlatformTypes]
+    mockk&lt;Comparable&lt;String&gt;&gt;()
+    ---------------------------
+test/slack/test/MyTests.kt:63:Error: platform type 'java.lang.Runnable'
+should not be mocked [DoNotMockPlatformTypes]
+    mockk&lt;Runnable&gt;()
+    -----------------
+test/slack/test/MyTests.kt:65:Error: platform type
+'kotlin.io.FileTreeWalk' should not be mocked [DoNotMockPlatformTypes]
+    mockk&lt;FileTreeWalk&gt;()
+    ---------------------
+test/slack/test/MyTests.kt:66:Error: platform type 'kotlin.Lazy' should
+not be mocked [DoNotMockPlatformTypes]
+    mockk&lt;Lazy&lt;String&gt;&gt;()
+    ---------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`test/slack/test/MyTests.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+package slack.test
+
+import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.SpyK
+import io.mockk.mockk
+import io.mockk.mockkClass
+import io.mockk.mockkObject
+import io.mockk.spyk
+
+class MyTests {
+  @MockK lateinit var fieldDataMock: DataClass
+  @SpyK lateinit var fieldDataSpy: DataClass
+
+  fun dataClass() {
+    val localMock1: DataClass = mockk()
+    val localMock2 = mockk<DataClass>()
+
+    val localSpy1: DataClass = spyk()
+    val localSpy2 = spyk<DataClass>()
+    val localSpy3 = spyk(localMock1)
+
+    // KClass<DataClass> is not detected, explicit type needed!
+    val localClassMock = mockkClass<DataClass>(DataClass::class)
+  }
+
+  @MockK lateinit var fieldSealedMock: SealedClass
+  @SpyK lateinit var fieldSealedSpy: SealedClass
+
+  fun sealedClass() {
+    val localMock1: SealedClass = mockk()
+    val localMock2 = mockk<SealedClass>()
+
+    val localSpy1: SealedClass = spyk()
+    val localSpy2 = spyk<SealedClass>()
+    val localSpy3 = spyk(localMock1)
+
+    // KClass<SealedClass> is not detected, explicit type needed!
+    val localClassMock = mockkClass<SealedClass>(SealedClass::class)
+  }
+
+  @MockK lateinit var fieldObjectMock: ObjectClass
+  @SpyK lateinit var fieldObjectSpy: ObjectClass
+
+  fun objectClass() {
+    val localMock1: ObjectClass = mockk()
+    val localMock2 = mockk<ObjectClass>()
+
+    val localSpy1: ObjectClass = spyk()
+    val localSpy2 = spyk<ObjectClass>()
+    val localSpy3 = spyk(localMock1)
+
+    // KClass<ObjectClass> is not detected, explicit type needed!
+    val localClassMock = mockkClass<ObjectClass>(ObjectClass::class)
+
+    // Wrong Error: 'kotlin.Unit' is an object, so mocking it should not be necessary [DoNotMockObjectClass]
+    // Wrong Warning: platform type 'kotlin.Unit' should not be mocked [DoNotMockPlatformTypes]
+    // mockkObject(ObjectClass)
+  }
+
+  fun platformTypes() {
+    // java.
+    mockk<Comparable<String>>()
+    mockk<Runnable>()
+    // kotlin.
+    mockk<FileTreeWalk>()
+    mockk<Lazy<String>>()
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/mocking/MockDetectorOptionsTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `MockDetector.tests`.
+To report a problem with this extracted sample, visit
+https://github.com/slackhq/slack-lints.
 
 (##) Including
 

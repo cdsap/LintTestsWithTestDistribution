@@ -47,23 +47,11 @@ time.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-build.gradle:4:Error: Use an integer rather than a string here (replace
-'19' with just 19) [StringShouldBeInt]
-    compileSdkVersion '19'
-    ----------------------
-build.gradle:7:Error: Use an integer rather than a string here (replace
-'8' with just 8) [StringShouldBeInt]
-    minSdkVersion '8'
-    -----------------
-build.gradle:8:Error: Use an integer rather than a string here (replace
-"16" with just 16) [StringShouldBeInt]
-    targetSdkVersion "16"
-    ---------------------
-build.gradle:10:Error: Use an integer rather than a string here (replace
-'19' with just 19) [StringShouldBeInt]
-    compileSdk '19'
-    ---------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+build.gradle:11:Error: minSdk does not support strings; did you mean
+minSdkPreview ? [StringShouldBeInt]
+    minSdk ''
+    ---------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -72,22 +60,27 @@ Here is the source file referenced above:
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion '19'
-    buildToolsVersion "19.0.1"
+    compileSdkVersion 19
+    buildToolsVersion "19.0.0"
+
     defaultConfig {
-        minSdkVersion '8'
-        targetSdkVersion "16"
+        minSdkVersion 7
+        minSdkVersion "ECLAIR"
+        minSdk 7
+        minSdk ''
+        targetSdkVersion 19
+        versionCode 1
+        versionName "1.0"
     }
-    compileSdk '19'
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/GradleDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
-found for this lint check, `GradleDetector.testStringInt`.
+found for this lint check, `GradleDetector.testMinSdkVersion`.
 To report a problem with this extracted sample, visit
 https://issuetracker.google.com/issues/new?component=192708.
 

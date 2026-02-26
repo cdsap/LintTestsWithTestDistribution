@@ -87,22 +87,24 @@ to Play Console in the future [PlaySdkIndexNonCompliant]
     compile 'com.example.ads.third.party:example:7.1.6' // Policy (Malware), non-blocking
             -------------------------------------------
 build.gradle:21:Warning: com.example.ads.third.party:example version
-7.1.7 has User Data policy issues that will block publishing of your app
-to Play Console in the future [PlaySdkIndexNonCompliant]
+7.1.7 has Malware policy, Permissions policy, User Data policy issues
+that will block publishing of your app to Play Console in the future
+[PlaySdkIndexNonCompliant]
     compile 'com.example.ads.third.party:example:7.1.7' // Policy (multiple types), non-blocking
             -------------------------------------------
 build.gradle:22:Error: [Prevents app release in Google Play Console]
-com.example.ads.third.party:example version 7.1.8 has User Data policy
-issues that will block publishing of your app to Play Console
-[PlaySdkIndexNonCompliant]
+com.example.ads.third.party:example version 7.1.8 has Malware policy,
+User Data policy issues that will block publishing of your app to Play
+Console [PlaySdkIndexNonCompliant]
     compile 'com.example.ads.third.party:example:7.1.8' // Policy (multiple types), blocking
             -------------------------------------------
 build.gradle:23:Warning: com.example.ads.third.party:example version
-7.1.9 has Permissions policy issues that will block publishing of your
-app to Play Console in the future [PlaySdkIndexNonCompliant]
+7.1.9 has Malware policy, Permissions policy issues that will block
+publishing of your app to Play Console in the future
+[PlaySdkIndexNonCompliant]
     compile 'com.example.ads.third.party:example:7.1.9' // Policy (multiple types), no severity
             -------------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -144,7 +146,7 @@ dependencies {
 
     compile 'com.another.example:example' // Ok (not in Index)
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/GradleDetectorTest.kt)

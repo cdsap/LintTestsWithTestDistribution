@@ -103,7 +103,7 @@ unique key related to the item's data, or simply append the item's index
 to the key. [ConstantContentStateKeyInItemsCall]
     state = rememberSharedContentState(0),
             -----------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -203,7 +203,7 @@ fun Test() {
 fun MyLayoutComposable(modifier: Modifier = Modifier) {
     // Do Nothing
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/animation/animation-lint/src/test/java/androidx/compose/animation/lint/SharedTransitionScopeDetectorTest.kt)
@@ -222,17 +222,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.animation:animation-android:1.9.0-alpha01")
+implementation("androidx.compose.animation:animation-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.animation:animation-android:1.9.0-alpha01'
+implementation 'androidx.compose.animation:animation-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.animation.android)
 
 # libs.versions.toml
 [versions]
-animation-android = "1.9.0-alpha01"
+animation-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -244,11 +244,11 @@ animation-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.animation:animation-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.animation:animation-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.animation:animation-android](androidx_compose_animation_animation-android.md.html).

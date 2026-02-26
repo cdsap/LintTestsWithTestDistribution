@@ -53,10 +53,10 @@ invalid request codes.
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
 src/main/kotlin/com/example/test.kt:6:Error: Upgrade Fragment version to
-at least . [InvalidFragmentVersionForActivityResult]
+at least 1.3.0. [InvalidFragmentVersionForActivityResult]
 val launcher = ActivityResultCaller().registerForActivityResult(ActivityResultContract())
                --------------------------------------------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -65,7 +65,7 @@ Here are the relevant source files:
 dependencies {
     api("androidx.fragment:fragment:1.2.4")
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/main/kotlin/com/example/test.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
@@ -75,7 +75,7 @@ import androidx.activity.result.ActivityResultCaller
 import androidx.activity.result.contract.ActivityResultContract
 
 val launcher = ActivityResultCaller().registerForActivityResult(ActivityResultContract())
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/activity/activity-lint/src/test/java/androidx/activity/lint/ActivityResultFragmentVersionDetectorTest.kt)
@@ -94,17 +94,17 @@ https://issuetracker.google.com/issues/new?component=527362.
 
 ```
 // build.gradle.kts
-implementation("androidx.activity:activity:1.11.0-rc01")
+implementation("androidx.activity:activity:1.13.0-rc01")
 
 // build.gradle
-implementation 'androidx.activity:activity:1.11.0-rc01'
+implementation 'androidx.activity:activity:1.13.0-rc01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.activity)
 
 # libs.versions.toml
 [versions]
-activity = "1.11.0-rc01"
+activity = "1.13.0-rc01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -116,7 +116,7 @@ activity = {
 }
 ```
 
-1.11.0-rc01 is the version this documentation was generated from;
+1.13.0-rc01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.activity:activity](androidx_activity_activity.md.html).

@@ -18,7 +18,7 @@ Min
 Compiled
 :   Lint 8.7+
 Artifact
-:   androidx.compose.ui:ui-android:1.9.0-alpha01
+:   androidx.compose.ui:ui-android:1.11.0-alpha06
 
 (##) Included Issues
 
@@ -26,8 +26,10 @@ Artifact
 |----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|
 |[UnnecessaryComposedModifier](UnnecessaryComposedModifier.md.html)                      |Modifier.composed should only be used for modifiers that invoke @Composable functions                                                            |
 |[LocalContextConfigurationRead](LocalContextConfigurationRead.md.html)                  |Reading Configuration using LocalContext.current.resources.configuration                                                                         |
+|[LocalContextGetResourceValueCall](LocalContextGetResourceValueCall.md.html)            |Querying resource properties using LocalContext.current                                                                                          |
 |[LocalContextResourcesRead](LocalContextResourcesRead.md.html)                          |Reading Resources using LocalContext.current.resources                                                                                           |
 |[ConfigurationScreenWidthHeight](ConfigurationScreenWidthHeight.md.html)                |Using Configuration.screenWidthDp/screenHeightDp instead of LocalWindowInfo.current.containerSize                                                |
+|[NonObservableLocale](NonObservableLocale.md.html)                                      |Reading locale in a non-observable way in a composable function                                                                                  |
 |[ModifierFactoryExtensionFunction](ModifierFactoryExtensionFunction.md.html)            |Modifier factory functions should be extensions on Modifier                                                                                      |
 |[ModifierFactoryReturnType](ModifierFactoryReturnType.md.html)                          |Modifier factory functions should return Modifier                                                                                                |
 |[ModifierFactoryUnreferencedReceiver](ModifierFactoryUnreferencedReceiver.md.html)      |Modifier factory functions must use the receiver Modifier instance                                                                               |
@@ -46,17 +48,17 @@ Artifact
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.ui:ui-android:1.9.0-alpha01")
+implementation("androidx.compose.ui:ui-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.ui:ui-android:1.9.0-alpha01'
+implementation 'androidx.compose.ui:ui-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.ui.android)
 
 # libs.versions.toml
 [versions]
-ui-android = "1.9.0-alpha01"
+ui-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -68,11 +70,11 @@ ui-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.ui:ui-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.ui:ui-lint:1.11.0-alpha06`.
 
 
 (##) Changes
@@ -88,7 +90,9 @@ You can also use `androidx.compose.ui:ui-lint:1.9.0-alpha01`.
 * 1.7.0: Adds SuspiciousModifierThen.
 * 1.8.0: Adds ConfigurationScreenWidthHeight,
   LocalContextConfigurationRead.
-* 1.9.0-alpha01: Adds LocalContextResourcesRead.
+* 1.9.0: Adds LocalContextResourcesRead.
+* 1.10.0: Adds LocalContextGetResourceValueCall.
+* 1.11.0-alpha03: Adds NonObservableLocale.
 
 (##) Version Compatibility
 
@@ -96,7 +100,26 @@ There are multiple older versions available of this library:
 
 | Version            | Date     | Issues | Compatible | Compiled      | Requires |
 |-------------------:|----------|-------:|------------|--------------:|---------:|
-|       1.9.0-alpha01|2025/04/23|      13|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha06|2026/02/25|      15|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha05|2026/02/11|      15|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha04|2026/01/29|      15|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha03|2026/01/14|      15|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha02|2025/12/17|      14|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha01|2025/12/03|      14|         Yes|           8.7+|      8.7+|
+|              1.10.4|2026/02/25|      14|         Yes|           8.7+|      8.7+|
+|              1.10.3|2026/02/11|      14|         Yes|           8.7+|      8.7+|
+|              1.10.2|2026/01/29|      14|         Yes|           8.7+|      8.7+|
+|              1.10.1|2026/01/14|      14|         Yes|           8.7+|      8.7+|
+|              1.10.0|2025/12/03|      14|         Yes|           8.7+|      8.7+|
+|               1.9.5|2025/11/19|      13|         Yes|           8.7+|      8.7+|
+|               1.9.4|2025/10/22|      13|         Yes|           8.7+|      8.7+|
+|               1.9.3|2025/10/08|      13|         Yes|           8.7+|      8.7+|
+|               1.9.2|2025/09/24|      13|         Yes|           8.7+|      8.7+|
+|               1.9.1|2025/09/10|      13|         Yes|           8.7+|      8.7+|
+|               1.9.0|2025/08/13|      13|         Yes|           8.7+|      8.7+|
+|               1.8.3|2025/06/18|      12|         Yes|    8.0 and 8.1|8.0 and 8.1|
+|               1.8.2|2025/05/20|      12|         Yes|    8.0 and 8.1|8.0 and 8.1|
+|               1.8.1|2025/05/07|      12|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
 |               1.8.0|2025/04/23|      12|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
 |               1.7.8|2025/02/12|      10|      No[^2]|    8.0 and 8.1|8.0 and 8.1|
 |               1.7.7|2025/01/29|      10|      No[^2]|    8.0 and 8.1|8.0 and 8.1|

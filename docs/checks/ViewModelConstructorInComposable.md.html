@@ -27,19 +27,63 @@ Compiled
 Artifact
 :   [androidx.lifecycle:lifecycle-viewmodel-compose-android](androidx_lifecycle_lifecycle-viewmodel-compose-android.md.html)
 Since
-:   2.9.0-alpha01
+:   2.9.0
 Affects
 :   Kotlin and Java files and test sources
 Editing
 :   This check runs on the fly in the IDE editor
 Implementation
 :   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lifecycle/lifecycle-viewmodel-compose-lint/src/main/java/androidx/lifecycle/lint/ViewModelConstructorInComposableDetector.kt)
+Tests
+:   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lifecycle/lifecycle-viewmodel-compose-lint/src/test/java/androidx/lifecycle/viewmodel/compose/lint/ViewModelConstructorInComposableTest.kt)
 Copyright Year
 :   2024
 
 View models should not be constructed directly inside composable
 functions. Instead you should use the lifecycle viewmodel
 extensionfunctions e.g. viewModel<MyViewModel>()
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+src/com/example/MyViewModel.kt:10:Error: Constructing a view model in a
+composable [ViewModelConstructorInComposable]
+    val viewModel = MyViewModel()
+                    -----------
+src/com/example/MyViewModel.kt:12:Error: Constructing a view model in a
+composable [ViewModelConstructorInComposable]
+    val vm = MyViewModel()
+             -----------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`src/com/example/MyViewModel.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+package com.example
+
+import androidx.compose.runtime.*
+import androidx.lifecycle.ViewModel
+
+class MyViewModel: ViewModel()
+@Composable
+fun Test() {
+    val viewModel = MyViewModel()
+    val composableLambda = @Composable {
+        val vm = MyViewModel()
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lifecycle/lifecycle-viewmodel-compose-lint/src/test/java/androidx/lifecycle/viewmodel/compose/lint/ViewModelConstructorInComposableTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `ViewModelConstructorInComposableDetector.constructInComposableShouldFail`.
+To report a problem with this extracted sample, visit
+https://issuetracker.google.com/issues/new?component=413132.
 
 (##) Including
 
@@ -49,17 +93,17 @@ extensionfunctions e.g. viewModel<MyViewModel>()
 
 ```
 // build.gradle.kts
-implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.0-rc01")
+implementation("androidx.lifecycle:lifecycle-viewmodel-compose-android:2.11.0-alpha01")
 
 // build.gradle
-implementation 'androidx.lifecycle:lifecycle-viewmodel-compose-android:2.9.0-rc01'
+implementation 'androidx.lifecycle:lifecycle-viewmodel-compose-android:2.11.0-alpha01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.lifecycle.viewmodel.compose.android)
 
 # libs.versions.toml
 [versions]
-lifecycle-viewmodel-compose-android = "2.9.0-rc01"
+lifecycle-viewmodel-compose-android = "2.11.0-alpha01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -71,7 +115,7 @@ lifecycle-viewmodel-compose-android = {
 }
 ```
 
-2.9.0-rc01 is the version this documentation was generated from;
+2.11.0-alpha01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.lifecycle:lifecycle-viewmodel-compose-android](androidx_lifecycle_lifecycle-viewmodel-compose-android.md.html).

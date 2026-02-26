@@ -56,7 +56,7 @@ that return Unit should start with an uppercase letter
 [ComposableNaming]
     fun button() {}
         ------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -68,7 +68,7 @@ import androidx.compose.runtime.Composable
 
 @Composable
 fun button() {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/runtime/runtime-lint/src/test/java/androidx/compose/runtime/lint/ComposableNamingDetectorTest.kt)
@@ -87,17 +87,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.runtime:runtime-android:1.9.0-alpha01")
+implementation("androidx.compose.runtime:runtime-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.runtime:runtime-android:1.9.0-alpha01'
+implementation 'androidx.compose.runtime:runtime-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.runtime.android)
 
 # libs.versions.toml
 [versions]
-runtime-android = "1.9.0-alpha01"
+runtime-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -109,11 +109,11 @@ runtime-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.runtime:runtime-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.runtime:runtime-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.runtime:runtime-android](androidx_compose_runtime_runtime-android.md.html).

@@ -53,7 +53,7 @@ called from the worker thread, currently inferred thread is main thread
 [WrongThread]
     publishProgress(); // ERROR
     -----------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -123,10 +123,12 @@ public class ThreadTest {
         }
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/ThreadDetectorTest.kt)
+You can also visit the source code ([ThreadDetectorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/ThreadDetectorTest.kt)
+[ProjectInitializerTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/ProjectInitializerTest.kt)
+[IntellijThreadDetectorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/studio-checks/src/test/java/com/android/tools/lint/checks/studio/IntellijThreadDetectorTest.kt)
+[IntellijInferredThreadDetectorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/studio-checks/src/test/java/com/android/tools/lint/checks/studio/IntellijInferredThreadDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test

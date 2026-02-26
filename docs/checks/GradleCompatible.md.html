@@ -37,7 +37,7 @@ There are some combinations of libraries, or tools and libraries, that
 are incompatible, or can lead to bugs. One such incompatibility is
 compiling with a version of the Android support libraries that is not
 the latest version (or in particular, a version lower than your
-`targetSdkVersion`).
+`targetSdk`).
 
 !!! Tip
    This lint check has an associated quickfix available in the IDE.
@@ -52,7 +52,7 @@ provided dependency) on com.google.android.wearable:wearable:1.2.0
 [GradleCompatible]
     compile 'com.google.android.support:wearable:1.2.0'
              -----------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -61,7 +61,7 @@ Here is the source file referenced above:
 apply plugin: 'android'
 
 android {
-    compileSdkVersion 36
+    compileSdkVersion
     buildToolsVersion "19.0.0"
 
     defaultConfig {
@@ -88,7 +88,7 @@ dependencies {
 
     androidTestCompile 'com.android.support.test:runner:0.3'
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/GradleDetectorTest.kt)

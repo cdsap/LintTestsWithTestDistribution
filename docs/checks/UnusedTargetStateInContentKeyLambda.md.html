@@ -49,61 +49,61 @@ its result.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/foo/test.kt:13:Error: Target state parameter it is not used
+src/test/foo/test.kt:13:Error: Target state parameter it is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { if (foo) { /**/ } else { /**/ } }
                  -----------------------------------
-src/foo/test.kt:17:Error: Target state parameter it is not used
+src/test/foo/test.kt:17:Error: Target state parameter it is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { if (foo) { /**/ } else { /**/ } },
                  -----------------------------------
-src/foo/test.kt:22:Error: Target state parameter param is not used
+src/test/foo/test.kt:22:Error: Target state parameter param is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { param -&gt; if (foo) { /**/ } else { /**/ } }
                    -----
-src/foo/test.kt:26:Error: Target state parameter param is not used
+src/test/foo/test.kt:26:Error: Target state parameter param is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { param -&gt; if (foo) { /**/ } else { /**/ } },
                    -----
-src/foo/test.kt:31:Error: Target state parameter _ is not used
+src/test/foo/test.kt:31:Error: Target state parameter _ is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { _ -&gt; if (foo) { /**/ } else { /**/ } }
                    -
-src/foo/test.kt:35:Error: Target state parameter _ is not used
+src/test/foo/test.kt:35:Error: Target state parameter _ is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { _ -&gt; if (foo) { /**/ } else { /**/ } },
                    -
-src/foo/test.kt:39:Error: Target state parameter it is not used
+src/test/foo/test.kt:39:Error: Target state parameter it is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { if (foo) { /**/ } else { /**/ } }
                  -----------------------------------
-src/foo/test.kt:42:Error: Target state parameter it is not used
+src/test/foo/test.kt:42:Error: Target state parameter it is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { if (foo) { /**/ } else { /**/ } },
                  -----------------------------------
-src/foo/test.kt:46:Error: Target state parameter param is not used
+src/test/foo/test.kt:46:Error: Target state parameter param is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { param -&gt; if (foo) { /**/ } else { /**/ } }
                    -----
-src/foo/test.kt:49:Error: Target state parameter param is not used
+src/test/foo/test.kt:49:Error: Target state parameter param is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { param -&gt; if (foo) { /**/ } else { /**/ } },
                    -----
-src/foo/test.kt:53:Error: Target state parameter _ is not used
+src/test/foo/test.kt:53:Error: Target state parameter _ is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { _ -&gt; if (foo) { /**/ } else { /**/ } }
                    -
-src/foo/test.kt:56:Error: Target state parameter _ is not used
+src/test/foo/test.kt:56:Error: Target state parameter _ is not used
 [UnusedTargetStateInContentKeyLambda]
     contentKey = { _ -&gt; if (foo) { /**/ } else { /**/ } },
                    -
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
-`src/foo/test.kt`:
+`src/test/foo/test.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
-package foo
+package test.foo
 
 import androidx.compose.animation.*
 import androidx.compose.runtime.*
@@ -161,7 +161,7 @@ fun Test() {
         content = { _ -> if (foo) { /**/ } else { /**/ } }
     )
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/animation/animation-lint/src/test/java/androidx/compose/animation/lint/AnimatedContentDetectorTest.kt)
@@ -180,17 +180,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.animation:animation-android:1.9.0-alpha01")
+implementation("androidx.compose.animation:animation-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.animation:animation-android:1.9.0-alpha01'
+implementation 'androidx.compose.animation:animation-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.animation.android)
 
 # libs.versions.toml
 [versions]
-animation-android = "1.9.0-alpha01"
+animation-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -202,11 +202,11 @@ animation-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.animation:animation-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.animation:animation-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.animation:animation-android](androidx_compose_animation_animation-android.md.html).

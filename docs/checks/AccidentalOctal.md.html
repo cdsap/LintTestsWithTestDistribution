@@ -40,42 +40,57 @@ of an app.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-build.gradle:13:Error: The leading 0 turns this number into octal which
+build.gradle:7:Error: The leading 0 turns this number into octal which
 is probably not what was intended (interpreted as 8) [AccidentalOctal]
-    versionCode 010
-                ---
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    version = release(010)
+              ------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
 `build.gradle`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~groovy linenumbers
-apply plugin: 'com.android.application'
+plugins {
+  id("com.android.application")
+}
 
 android {
-    defaultConfig {
-        // Ok: not octal
-        versionCode 1
-        versionCode 10
-        versionCode 100
-        // ok: octal == decimal
-        versionCode 01
+  compileSdk {
+    version = release(010)
 
-        // Errors
-        versionCode 010
+    version = release()
+    version = release(  20)
+    version = release(  "20")
+    version = release(  "S")
 
-        // Lint Groovy Bug:
-        versionCode 01 // line suffix comments are not handled correctly
+    version = release( // 1
+        "S",
+    ) {
+      sdkExtension = 12
     }
+
+    version = preview( // 2
+        "S",
+    )
+
+    // Different syntax.
+    version(release(35))
+    version(release 35)
+    version release(35)
+    version = release 35
+
+    // Invalid. Lint will not see it, and project will not build:
+    // version release 35
+  }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/GradleDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
-found for this lint check, `GradleDetector.testAccidentalOctal`.
+found for this lint check, `GradleDetector.testCompileSdkVersionNewDslGroovy`.
 To report a problem with this extracted sample, visit
 https://issuetracker.google.com/issues/new?component=192708.
 

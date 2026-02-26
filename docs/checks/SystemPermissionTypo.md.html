@@ -52,25 +52,25 @@ android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
                                                       -----------------------------------
 AndroidManifest.xml:9:Warning: Did you mean
 android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
-    &lt;activity android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-                                  -----------------------------------
+    &lt;activity android:name="name3" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+                                                       -----------------------------------
 AndroidManifest.xml:10:Warning: Did you mean
 android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
-    &lt;activity-alias android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-                                        -----------------------------------
+    &lt;activity-alias android:name="name4" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+                                                             -----------------------------------
 AndroidManifest.xml:11:Warning: Did you mean
 android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
-    &lt;receiver android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-                                  -----------------------------------
+    &lt;receiver android:name="name5" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+                                                       -----------------------------------
 AndroidManifest.xml:12:Warning: Did you mean
 android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
-    &lt;service android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-                                 -----------------------------------
+    &lt;service android:name="name6" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+                                                      -----------------------------------
 AndroidManifest.xml:13:Warning: Did you mean
 android.permission.BIND_NFC_SERVICE? [SystemPermissionTypo]
-    &lt;provider android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-                                  -----------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    &lt;provider android:name="name7" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+                                                       -----------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -82,16 +82,16 @@ Here is the source file referenced above:
   package="com.example.helloworld"&gt;
   &lt;uses-permission android:name="android.permission.BIND_NCF_SERVICE" /&gt;
   &lt;application android:name="App" android:permission="android.permission.BIND_NCF_SERVICE"&gt;
-    &lt;activity /&gt;
-    &lt;activity android:permission="android.permission.BIND_NFC_SERVICE" /&gt;
-    &lt;activity android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-    &lt;activity-alias android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-    &lt;receiver android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-    &lt;service android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
-    &lt;provider android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+    &lt;activity android:name="name1" /&gt;
+    &lt;activity android:name="name2" android:permission="android.permission.BIND_NFC_SERVICE" /&gt;
+    &lt;activity android:name="name3" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+    &lt;activity-alias android:name="name4" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+    &lt;receiver android:name="name5" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+    &lt;service android:name="name6" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
+    &lt;provider android:name="name7" android:permission="android.permission.BIND_NCF_SERVICE" /&gt;
     &lt;/application&gt;
   &lt;/manifest&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/PermissionErrorDetectorTest.kt)

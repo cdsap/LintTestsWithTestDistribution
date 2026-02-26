@@ -1,13 +1,13 @@
 <meta charset="utf-8">
-(#) Application has custom scheme intent filters with missing `autoVerify` attributes
+(#) Application has http/https scheme intent filters with missing `autoVerify` attributes
 
-!!! WARNING: Application has custom scheme intent filters with missing `autoVerify` attributes
+!!! WARNING: Application has http/https scheme intent filters with missing `autoVerify` attributes
    This is a warning.
 
 Id
 :   `MissingAutoVerifyAttribute`
 Summary
-:   Application has custom scheme intent filters with missing `autoVerify` attributes
+:   Application has http/https scheme intent filters with missing `autoVerify` attributes
 Severity
 :   Warning
 Category
@@ -27,7 +27,7 @@ Compiled
 Artifact
 :   [com.android.security.lint:lint](com_android_security_lint_lint.md.html)
 Since
-:   1.0.1
+:   1.0.0
 Affects
 :   Manifest files
 Editing
@@ -35,15 +35,18 @@ Editing
 See
 :   https://goo.gle/MissingAutoVerifyAttribute
 Implementation
-:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/main/java/com/example/lint/checks/CustomSchemeDetector.kt)
+:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/main/java/com/example/lint/checks/MissingAutoVerifyDetector.kt)
 Tests
-:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/CustomSchemeDetectorTest.kt)
+:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/MissingAutoVerifyDetectorTest.kt)
 Copyright Year
 :   2024
 
-Intent filters should contain the `autoVerify` attribute and explicitly
-set it to true, in order to signal to the system to automatically verify
-the associated hosts in your app's intent filters.
+Intent filters that handle `http` or `https` schemes and include
+`android.intent.action.VIEW`, `android.intent.category.BROWSABLE`, and
+`android.intent.category.DEFAULT` should also include
+`android:autoVerify="true"`. This enables Android App Links, which
+securely associates your app with your domain. See
+https://developer.android.com/training/app-links/verify-android-applinks.
 
 !!! Tip
    This lint check has an associated quickfix available in the IDE.
@@ -52,12 +55,14 @@ the associated hosts in your app's intent filters.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-AndroidManifest.xml:5:Warning: Custom scheme intent filters should
-explicitly set the autoVerify attribute to true
+AndroidManifest.xml:5:Warning: This intent filter matches App Links
+(VIEW, BROWSABLE, DEFAULT, http/https), but is missing the
+android:autoVerify="true" attribute. See
+https://developer.android.com/training/app-links/verify-android-applinks
 [MissingAutoVerifyAttribute]
-    &lt;intent-filter android:autoVerify='false'&gt;
-    ^
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    &lt;intent-filter&gt;
+     -------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -67,21 +72,24 @@ Here is the source file referenced above:
 &lt;application android:debuggable='false'&gt;
 &lt;meta-data android:name='android.webkit.WebView.EnableSafeBrowsing'/&gt;
     &lt;activity android:name='com.example.MainActivity'&gt;
-        &lt;intent-filter android:autoVerify='false'&gt;
+        &lt;intent-filter&gt;
             &lt;action android:name='android.intent.action.VIEW' /&gt;
-            &lt;data android:scheme='telegram://' /&gt;
+            &lt;category android:name='android.intent.category.BROWSABLE' /&gt;
+            &lt;category android:name='android.intent.category.DEFAULT' /&gt;
+            &lt;data android:scheme='http' /&gt;
+            &lt;data android:scheme='https' /&gt;
         &lt;/intent-filter&gt;
     &lt;/activity&gt;
 &lt;/application&gt;
 &lt;/manifest&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
-[source code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/CustomSchemeDetectorTest.kt)
+[source code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/MissingAutoVerifyDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
-found for this lint check, `CustomSchemeDetector.testWhenFalseAutoVerifyAttributeSpecifiedOnCustomSchemeIntentFilter_showsWarning`.
+found for this lint check, `MissingAutoVerifyDetector.testWhenAppLinkMissingAutoVerify_showsWarning`.
 To report a problem with this extracted sample, visit
 https://github.com/google/android-security-lints/issues.
 
@@ -94,17 +102,17 @@ https://github.com/google/android-security-lints/issues.
 
 ```
 // build.gradle.kts
-lintChecks("com.android.security.lint:lint:1.0.3")
+lintChecks("com.android.security.lint:lint:1.0.4")
 
 // build.gradle
-lintChecks 'com.android.security.lint:lint:1.0.3'
+lintChecks 'com.android.security.lint:lint:1.0.4'
 
 // build.gradle.kts with version catalogs:
 lintChecks(libs.com.android.security.lint.lint)
 
 # libs.versions.toml
 [versions]
-com-android-security-lint-lint = "1.0.3"
+com-android-security-lint-lint = "1.0.4"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -116,7 +124,7 @@ com-android-security-lint-lint = {
 }
 ```
 
-1.0.3 is the version this documentation was generated from;
+1.0.4 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about com.android.security.lint:lint](com_android_security_lint_lint.md.html).

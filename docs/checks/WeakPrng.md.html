@@ -27,7 +27,7 @@ Compiled
 Artifact
 :   [com.android.security.lint:lint](com_android_security_lint_lint.md.html)
 Since
-:   1.0.1
+:   1.0.0
 Affects
 :   Kotlin and Java files
 Editing
@@ -59,7 +59,7 @@ java.security.SecureRandom for security / authentication purposes
 [WeakPrng]
     int random = Math.random() * 100;
                  -------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -74,7 +74,7 @@ public class TestWeakPrngDetector {
         int random = Math.random() * 100;
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/WeakPrngDetectorTest.kt)
@@ -94,17 +94,17 @@ https://github.com/google/android-security-lints/issues.
 
 ```
 // build.gradle.kts
-lintChecks("com.android.security.lint:lint:1.0.3")
+lintChecks("com.android.security.lint:lint:1.0.4")
 
 // build.gradle
-lintChecks 'com.android.security.lint:lint:1.0.3'
+lintChecks 'com.android.security.lint:lint:1.0.4'
 
 // build.gradle.kts with version catalogs:
 lintChecks(libs.com.android.security.lint.lint)
 
 # libs.versions.toml
 [versions]
-com-android-security-lint-lint = "1.0.3"
+com-android-security-lint-lint = "1.0.4"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -116,7 +116,7 @@ com-android-security-lint-lint = {
 }
 ```
 
-1.0.3 is the version this documentation was generated from;
+1.0.4 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about com.android.security.lint:lint](com_android_security_lint_lint.md.html).

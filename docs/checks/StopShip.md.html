@@ -61,7 +61,7 @@ src/test/pkg/Hidden.java:12:Error: STOPSHIP comment found; points to
 code which must be fixed prior to release [StopShip]
     /* We must STOPSHIP! */
                --------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -81,10 +81,11 @@ public class Hidden {
     /* We must STOPSHIP! */
     String x = "STOPSHIP"; // OK
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/CommentDetectorTest.java)
+You can also visit the source code ([CommentDetectorTest.java](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/CommentDetectorTest.java)
+[SuppressibleTestModeTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/infrastructure/SuppressibleTestModeTest.kt)
+[MainTest.java](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/MainTest.java)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test

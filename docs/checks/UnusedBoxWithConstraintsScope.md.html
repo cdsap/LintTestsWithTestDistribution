@@ -64,7 +64,7 @@ src/foo/test.kt:12:Error: BoxWithConstraints scope is not used
 [UnusedBoxWithConstraintsScope]
     BoxWithConstraints(propagateMinConstraints = false, content = { /**/ })
                                                                   --------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -83,7 +83,7 @@ fun Test() {
     BoxWithConstraints(content = { /**/ })
     BoxWithConstraints(propagateMinConstraints = false, content = { /**/ })
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/foundation/foundation-lint/src/test/java/androidx/compose/foundation/lint/BoxWithConstraintsDetectorTest.kt)
@@ -102,17 +102,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.foundation:foundation-android:1.9.0-alpha01")
+implementation("androidx.compose.foundation:foundation-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.foundation:foundation-android:1.9.0-alpha01'
+implementation 'androidx.compose.foundation:foundation-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.foundation.android)
 
 # libs.versions.toml
 [versions]
-foundation-android = "1.9.0-alpha01"
+foundation-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -124,11 +124,11 @@ foundation-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.foundation:foundation-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.foundation:foundation-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.foundation:foundation-android](androidx_compose_foundation_foundation-android.md.html).

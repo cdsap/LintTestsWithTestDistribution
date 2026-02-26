@@ -36,6 +36,8 @@ Editing
 :   This check runs on the fly in the IDE editor
 Implementation
 :   [Source Code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/main/java/slack/lint/inclusive/InclusiveNamingResourceScanner.kt)
+Tests
+:   [Source Code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/inclusive/InclusiveNamingDetectorTest.kt)
 Copyright Year
 :   2021
 
@@ -61,7 +63,59 @@ Example `lint.xml`:
         &lt;option name="block-list" value="some string" /&gt;
     &lt;/issue&gt;
 &lt;/lint&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+test/ForkHandler.kt:1:Error: Use inclusive naming. Matched string is
+'spork' in property name 'sporkBranch' [InclusiveNaming]
+class Spork(val sporkBranch: String, sporkParam: String) {
+            -----------------------
+test/ForkHandler.kt:2:Error: Use inclusive naming. Matched string is
+'knife' in property name 'knife' [InclusiveNaming]
+  val knife = ""
+  --------------
+test/ForkHandler.kt:4:Error: Use inclusive naming. Matched string is
+'spoon' in parameter name 'spoonRef' [InclusiveNaming]
+  fun spoonBranch(val spoonRef: String) {
+                  --------------------
+test/ForkHandler.kt:5:Error: Use inclusive naming. Matched string is
+'fork' in local variable name 'localFork' [InclusiveNaming]
+    val localFork = ""
+    ------------------
+test/ForkHandler.kt:7:Error: Use inclusive naming. Matched string is
+'spoon' in label name 'spoonRefs' [InclusiveNaming]
+    .forEach spoonRefs@ {
+             ^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`test/ForkHandler.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+class Spork(val sporkBranch: String, sporkParam: String) {
+  val knife = ""
+
+  fun spoonBranch(val spoonRef: String) {
+    val localFork = ""
+    emptyList<String>()
+        .forEach spoonRefs@ {
+
+         }
+  }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/inclusive/InclusiveNamingDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `InclusiveNamingResourceScanner.kotlin`.
+To report a problem with this extracted sample, visit
+https://github.com/slackhq/slack-lints.
 
 (##) Conflicts
 

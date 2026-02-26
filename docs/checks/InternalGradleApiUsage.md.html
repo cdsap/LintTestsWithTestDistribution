@@ -53,7 +53,11 @@ src/test.kt:2:Error: Avoid using internal Gradle APIs
 [InternalGradleApiUsage]
 import org.gradle.api.internal.component.SoftwareComponentInternal
 ------------------------------------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/test.kt:4:Error: Avoid using internal Gradle APIs
+[InternalGradleApiUsage]
+import org.gradle.api.internal.component.SoftwareComponentInternal as IMPORT_ALIAS_2_SOFTWARECOMPONENTINTERNAL
+--------------------------------------------------------------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -69,7 +73,7 @@ fun getSoftwareComponent() : SoftwareComponent {
         }
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lint/lint-gradle/src/test/java/androidx/lint/gradle/InternalApiUsageDetectorTest.kt)
@@ -88,17 +92,17 @@ https://issuetracker.google.com/issues/new?component=1147525.
 
 ```
 // build.gradle.kts
-implementation("androidx.lint:lint-gradle:1.0.0-alpha04")
+implementation("androidx.lint:lint-gradle:1.0.0-alpha05")
 
 // build.gradle
-implementation 'androidx.lint:lint-gradle:1.0.0-alpha04'
+implementation 'androidx.lint:lint-gradle:1.0.0-alpha05'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.lint.gradle)
 
 # libs.versions.toml
 [versions]
-lint-gradle = "1.0.0-alpha04"
+lint-gradle = "1.0.0-alpha05"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -110,7 +114,7 @@ lint-gradle = {
 }
 ```
 
-1.0.0-alpha04 is the version this documentation was generated from;
+1.0.0-alpha05 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.lint:lint-gradle](androidx_lint_lint-gradle.md.html).

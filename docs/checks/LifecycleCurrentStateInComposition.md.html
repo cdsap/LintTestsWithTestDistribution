@@ -27,7 +27,7 @@ Compiled
 Artifact
 :   [androidx.lifecycle:lifecycle-runtime-compose-android](androidx_lifecycle_lifecycle-runtime-compose-android.md.html)
 Since
-:   2.9.0-alpha10
+:   2.9.0
 Affects
 :   Kotlin and Java files and test sources
 Editing
@@ -86,7 +86,7 @@ should not be called within composition
 [LifecycleCurrentStateInComposition]
     lifecycle.currentState
               ------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -136,7 +136,7 @@ fun test3() {
         lifecycle.currentState
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lifecycle/lifecycle-runtime-compose-lint/src/test/java/androidx/lifecycle/runtime/compose/lint/ComposableLifecycleCurrentStateDetectorTest.kt)
@@ -155,17 +155,17 @@ https://issuetracker.google.com/issues/new?component=413132.
 
 ```
 // build.gradle.kts
-implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.9.0-rc01")
+implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.11.0-alpha01")
 
 // build.gradle
-implementation 'androidx.lifecycle:lifecycle-runtime-compose-android:2.9.0-rc01'
+implementation 'androidx.lifecycle:lifecycle-runtime-compose-android:2.11.0-alpha01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.lifecycle.runtime.compose.android)
 
 # libs.versions.toml
 [versions]
-lifecycle-runtime-compose-android = "2.9.0-rc01"
+lifecycle-runtime-compose-android = "2.11.0-alpha01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -177,7 +177,7 @@ lifecycle-runtime-compose-android = {
 }
 ```
 
-2.9.0-rc01 is the version this documentation was generated from;
+2.11.0-alpha01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.lifecycle:lifecycle-runtime-compose-android](androidx_lifecycle_lifecycle-runtime-compose-android.md.html).

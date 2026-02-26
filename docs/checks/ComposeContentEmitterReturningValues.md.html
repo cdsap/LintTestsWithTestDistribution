@@ -65,56 +65,77 @@ Example `lint.xml`:
         &lt;option name="content-emitters" value="some string" /&gt;
     &lt;/issue&gt;
 &lt;/lint&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 (##) Example
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/test.kt:3:Error: Composable functions should either emit content
-into the composition or return a value, but not both.If a composable
+src/test.kt:9:Error: Composable functions should either emit content
+into the composition or return a value, but not both. If a composable
 should offer additional control surfaces to its caller, those control
 surfaces or callbacks should be provided as parameters to the composable
-function by the caller.See
+function by the caller. See
 https://slackhq.github.io/compose-lints/rules/#do-not-emit-content-and-return-a-result
 for more information. [ComposeContentEmitterReturningValues]
-@Composable
-^
-src/test.kt:8:Error: Composable functions should either emit content
-into the composition or return a value, but not both.If a composable
+fun Something2(): String {
+    ----------
+src/test.kt:22:Error: Composable functions should either emit content
+into the composition or return a value, but not both. If a composable
 should offer additional control surfaces to its caller, those control
 surfaces or callbacks should be provided as parameters to the composable
-function by the caller.See
+function by the caller. See
 https://slackhq.github.io/compose-lints/rules/#do-not-emit-content-and-return-a-result
 for more information. [ComposeContentEmitterReturningValues]
-@Composable
-^
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+fun Something5(): String {
+    ----------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
 `src/test.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Text
 
 @Composable
-fun Something() {
-    Text("Hi")
-    Text("Hola")
+fun Something1() {
+    Something2()
 }
 @Composable
-fun Something() {
-    Spacer16()
+fun Something2(): String {
     Text("Hola")
+    Something3()
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@Composable
+fun Something3() {
+    Potato()
+}
+@Composable
+fun Something4() {
+    Banana()
+}
+@Composable
+fun Something5(): String {
+    Something3()
+    Something4()
+}
+@Composable
+fun Potato() {
+    Text("Potato")
+}
+@Composable
+fun Banana() {
+    Text("Banana")
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/slackhq/compose-lints/tree/main/compose-lint-checks/src/test/java/slack/lint/compose/ContentEmitterReturningValuesDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
-found for this lint check, `ContentEmitterReturningValuesDetector.errors when a Composable function has more than one UI emitter at the top level`.
+found for this lint check, `ContentEmitterReturningValuesDetector.errors when a Composable function has more than one indirect UI emitter at the top level`.
 To report a problem with this extracted sample, visit
 https://github.com/slackhq/compose-lints/issues.
 

@@ -13,30 +13,36 @@ Min
 Compiled
 :   Lint 8.0 and 8.1
 Artifact
-:   com.android.security.lint:lint:1.0.3
+:   com.android.security.lint:lint:1.0.4
 
 (##) Included Issues
 
-|Issue Id                                                                        |Issue Description                                                                |
-|--------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-|[VulnerableCryptoAlgorithm](VulnerableCryptoAlgorithm.md.html)                  |Application uses vulnerable cryptography algorithms                              |
-|[UnsafeCryptoAlgorithmUsage](UnsafeCryptoAlgorithmUsage.md.html)                |Application uses unsafe cipher modes or paddings with cryptographic algorithms   |
-|[MissingAutoVerifyAttribute](MissingAutoVerifyAttribute.md.html)                |Application has custom scheme intent filters with missing `autoVerify` attributes|
-|[InsecureDnsSdkLevel](InsecureDnsSdkLevel.md.html)                              |Application vulnerable to DNS spoofing attacks                                   |
-|[StrandhoggVulnerable](StrandhoggVulnerable.md.html)                            |Application vulnerable to Strandhogg attacks                                     |
-|[TapjackingVulnerable](TapjackingVulnerable.md.html)                            |Application's UI is vulnerable to tapjacking attacks                             |
-|[DefaultCleartextTraffic](DefaultCleartextTraffic.md.html)                      |Application by default permits cleartext traffic                                 |
-|[DefaultTrustedUserCerts](DefaultTrustedUserCerts.md.html)                      |Application by default trusts user-added CA certificates                         |
-|[UnintendedExposedUrl](UnintendedExposedUrl.md.html)                            |Application may have a debugging or development URL publicly exposed             |
-|[UnintendedPrivateIpAddress](UnintendedPrivateIpAddress.md.html)                |Application may have a private IP address publicly exposed                       |
-|[ExposedRootPath](ExposedRootPath.md.html)                                      |Application specifies the device root directory                                  |
-|[SensitiveExternalPath](SensitiveExternalPath.md.html)                          |Application may expose sensitive info like PII by storing it in external storage |
-|[WeakPrng](WeakPrng.md.html)                                                    |Application uses non-cryptographically secure pseudorandom number generators     |
-|[DisabledAllSafeBrowsing](DisabledAllSafeBrowsing.md.html)                      |Application has disabled safe browsing for all WebView objects                   |
-|[InsecurePermissionProtectionLevel](InsecurePermissionProtectionLevel.md.html)  |Custom permission created with a normal `protectionLevel`                        |
-|[UnsanitizedContentProviderFilename](UnsanitizedContentProviderFilename.md.html)|Trusting ContentProvider filenames without any sanitization                      |
-|[InsecureStickyBroadcastsMethod](InsecureStickyBroadcastsMethod.md.html)        |Usage of insecure sticky broadcasts                                              |
-|[InsecureStickyBroadcastsPermission](InsecureStickyBroadcastsPermission.md.html)|Usage of insecure sticky broadcasts                                              |
+|Issue Id                                                                        |Issue Description                                                                                |
+|--------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+|[VulnerableCryptoAlgorithm](VulnerableCryptoAlgorithm.md.html)                  |Application uses vulnerable cryptography algorithms                                              |
+|[UnsafeCryptoAlgorithmUsage](UnsafeCryptoAlgorithmUsage.md.html)                |Application uses unsafe cipher modes or paddings with cryptographic algorithms                   |
+|[InsecureDnsSdkLevel](InsecureDnsSdkLevel.md.html)                              |Application vulnerable to DNS spoofing attacks                                                   |
+|[StrandhoggVulnerable](StrandhoggVulnerable.md.html)                            |Application vulnerable to Strandhogg attacks                                                     |
+|[TapjackingVulnerable](TapjackingVulnerable.md.html)                            |Application's UI is vulnerable to tapjacking attacks                                             |
+|[DefaultCleartextTraffic](DefaultCleartextTraffic.md.html)                      |Application by default permits cleartext traffic                                                 |
+|[DefaultTrustedUserCerts](DefaultTrustedUserCerts.md.html)                      |Application by default trusts user-added CA certificates                                         |
+|[UnintendedExposedUrl](UnintendedExposedUrl.md.html)                            |Application may have a debugging or development URL publicly exposed                             |
+|[UnintendedPrivateIpAddress](UnintendedPrivateIpAddress.md.html)                |Application may have a private IP address publicly exposed                                       |
+|[ExposedRootPath](ExposedRootPath.md.html)                                      |Application specifies the device root directory                                                  |
+|[SensitiveExternalPath](SensitiveExternalPath.md.html)                          |Application may expose sensitive info like PII by storing it in external storage                 |
+|[DotPathAttribute](DotPathAttribute.md.html)                                    |The "path" attribute should not be set to "." as a path                                          |
+|[SlashPathAttribute](SlashPathAttribute.md.html)                                |The "path" attribute should not be set to "/" as a path                                          |
+|[HardcodedAbsolutePath](HardcodedAbsolutePath.md.html)                          |The "path" attribute should not be an absolute path                                              |
+|[MissingAutoVerifyAttribute](MissingAutoVerifyAttribute.md.html)                |Application has http/https scheme intent filters with missing `autoVerify` attributes            |
+|[WeakPrng](WeakPrng.md.html)                                                    |Application uses non-cryptographically secure pseudorandom number generators                     |
+|[DisabledAllSafeBrowsing](DisabledAllSafeBrowsing.md.html)                      |Application has disabled safe browsing for all WebView objects                                   |
+|[InsecurePermissionProtectionLevel](InsecurePermissionProtectionLevel.md.html)  |Custom permission created with a normal `protectionLevel`                                        |
+|[InsecureStickyBroadcastsMethod](InsecureStickyBroadcastsMethod.md.html)        |Usage of insecure sticky broadcasts                                                              |
+|[InsecureStickyBroadcastsPermission](InsecureStickyBroadcastsPermission.md.html)|Usage of insecure sticky broadcasts                                                              |
+|[ZeroBluetoothDiscoveryDuration](ZeroBluetoothDiscoveryDuration.md.html)        |The EXTRA_DISCOVERABLE_DURATION parameter is set to zero                                         |
+|[ExtendedBluetoothDiscoveryDuration](ExtendedBluetoothDiscoveryDuration.md.html)|The EXTRA_DISCOVERABLE_DURATION parameter is unsafely high                                       |
+|[LogInfoDisclosure](LogInfoDisclosure.md.html)                                  |Potentially sensitive information logged to Logcat                                               |
+|[InsecureLegacyExternalStorage](InsecureLegacyExternalStorage.md.html)          |The `requestLegacyExternalStorage` attribute is set to true, opting the app out of scoped storage|
 
 (##) Including
 
@@ -47,17 +53,17 @@ Artifact
 
 ```
 // build.gradle.kts
-lintChecks("com.android.security.lint:lint:1.0.3")
+lintChecks("com.android.security.lint:lint:1.0.4")
 
 // build.gradle
-lintChecks 'com.android.security.lint:lint:1.0.3'
+lintChecks 'com.android.security.lint:lint:1.0.4'
 
 // build.gradle.kts with version catalogs:
 lintChecks(libs.com.android.security.lint.lint)
 
 # libs.versions.toml
 [versions]
-com-android-security-lint-lint = "1.0.3"
+com-android-security-lint-lint = "1.0.4"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -69,12 +75,12 @@ com-android-security-lint-lint = {
 }
 ```
 
-1.0.3 is the version this documentation was generated from;
+1.0.4 is the version this documentation was generated from;
 there may be newer versions available.
 
 (##) Changes
 
-* 1.0.1: First version includes DefaultCleartextTraffic,
+* 1.0.0: First version includes DefaultCleartextTraffic,
   DefaultTrustedUserCerts, DisabledAllSafeBrowsing, ExposedRootPath,
   InsecureDnsSdkLevel, InsecurePermissionProtectionLevel,
   MissingAutoVerifyAttribute, SensitiveExternalPath,
@@ -86,6 +92,11 @@ there may be newer versions available.
   UnsanitizedFilenameFromContentProvider.
 * 1.0.3: Adds UnsanitizedContentProviderFilename. Removes
   UnsanitizedFilenameFromContentProvider.
+* 1.0.4: Adds DotPathAttribute, ExtendedBluetoothDiscoveryDuration,
+  HardcodedAbsolutePath, InsecureLegacyExternalStorage,
+  LogInfoDisclosure, SlashPathAttribute,
+  ZeroBluetoothDiscoveryDuration. Removes
+  UnsanitizedContentProviderFilename.
 
 (##) Version Compatibility
 
@@ -93,8 +104,10 @@ There are multiple older versions available of this library:
 
 | Version            | Date     | Issues | Compatible | Compiled      | Requires |
 |-------------------:|----------|-------:|------------|--------------:|---------:|
+|               1.0.4|          |      24|         Yes|    8.0 and 8.1|8.0 and 8.1|
 |               1.0.3|          |      18|         Yes|    8.0 and 8.1|8.0 and 8.1|
 |               1.0.2|          |      18|         Yes|    8.0 and 8.1|8.0 and 8.1|
 |               1.0.1|          |      15|         Yes|    8.0 and 8.1|8.0 and 8.1|
+|               1.0.0|          |      15|         Yes|    8.0 and 8.1|8.0 and 8.1|
 
 <!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

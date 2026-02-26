@@ -1,0 +1,210 @@
+<meta charset="utf-8">
+(#) Full Screen Intent Insights
+
+!!! WARNING: Full Screen Intent Insights
+   This is a warning.
+
+Id
+:   `FullScreenIntentPolicy`
+Summary
+:   Full Screen Intent Insights
+Severity
+:   Warning
+Category
+:   Play Policy
+Platform
+:   Android
+Vendor
+:   Play policy insights beta
+Min
+:   Lint 8.2 to 8.6
+Compiled
+:   Lint 8.7+
+Artifact
+:   [com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html)
+Since
+:   0.1.3
+Affects
+:   Kotlin and Java files and manifest files
+Editing
+:   This check runs on the fly in the IDE editor
+
+On Android 14+, the `USE_FULL_SCREEN_INTENT` permission is auto-granted
+*only* for apps whose core function is setting alarms or handling calls.
+For any other use case, you must obtain explicit user consent and
+clearly explain your need. This policy prevents the misuse of
+full-screen intents for non-critical purposes and requires that your use
+does not interfere with or disrupt the user's device, other apps, or
+overall usability.
+
+**Dos:**
+
+- Request user consent for the permission and provide a clear
+  explanation for the request if not auto-granted.
+- Limit use to necessary high-priority notifications/alerts.
+- Submit a declaration form in your Play Console to establish pre-grant
+  eligibility for the full-screen intent permission if targeting
+  Android 14+.
+
+**Don'ts:**
+
+- Use this permission for non-core or low-priority features.
+- Use this permission to interfere with devices or other apps.
+- Use this permission for disruptive ads or disruptive notifications.
+
+**Helpful Links:**
+
+See Policy page: https://goo.gle/play-policy-full-screen-intent
+See Help Center article: https://goo.gle/play-help-full-screen-intent
+See Declaration form:  https://goo.gle/play-permission-decl-form
+
+Always review the full policy in the Policy Center to ensure
+compliance.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+AndroidManifest.xml:3:Warning: USE_FULL_SCREEN_INTENT permission is
+auto-granted to core alarm or call functions on Android 14+ but other
+use cases require user consent. [FullScreenIntentPolicy]
+  &lt;uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/&gt;
+                   --------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`AndroidManifest.xml`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+  &lt;uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/&gt;
+  &lt;uses-sdk android:targetSdkVersion="34"/&gt;
+&lt;/manifest&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](/policyinsights/src/test/java/com/google/play/policy/insights/FullScreenIntentPolicyDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `FullScreenIntentPolicyDetector.testFlagsUseFullScreenIntent`.
+To report a problem with this extracted sample, contact
+Play policy insights beta.
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("com.google.play.policy.insights:insights-lint:0.1.4")
+
+// build.gradle
+implementation 'com.google.play.policy.insights:insights-lint:0.1.4'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.insights.lint)
+
+# libs.versions.toml
+[versions]
+insights-lint = "0.1.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+insights-lint = {
+    module = "com.google.play.policy.insights:insights-lint",
+    version.ref = "insights-lint"
+}
+```
+
+0.1.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+[Additional details about com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Adding the suppression attribute
+  `tools:ignore="FullScreenIntentPolicy"` on the problematic XML
+  element (or one of its enclosing elements). You may also need to add
+  the following namespace declaration on the root element in the XML
+  file if it's not already there:
+  `xmlns:tools="http://schemas.android.com/tools"`.
+
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;manifest xmlns:tools="http://schemas.android.com/tools"&gt;
+      ...
+      &lt;uses-permission tools:ignore="FullScreenIntentPolicy" .../&gt;
+    ...
+  &lt;/manifest&gt;
+  ```
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("FullScreenIntentPolicy")
+  fun method() {
+     setFullScreenIntent(...)
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("FullScreenIntentPolicy")
+  void method() {
+     setFullScreenIntent(...);
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection FullScreenIntentPolicy
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="FullScreenIntentPolicy" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'FullScreenIntentPolicy'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore FullScreenIntentPolicy ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

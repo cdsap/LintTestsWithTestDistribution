@@ -1,0 +1,80 @@
+(#) androidx.test.uiautomator:uiautomator
+
+Name
+:   UIAutomator
+Description
+:   UI testing framework suitable for cross-app functional UI testing
+License
+:   [The Apache Software License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.txt)
+Vendor
+:   Android Open Source Project
+Identifier
+:   androidx.test.uiautomator
+Feedback
+:   https://issuetracker.google.com/issues/new?component=1237242
+Min
+:   Lint 8.0 and 8.1
+Compiled
+:   Lint 8.7+
+Artifact
+:   androidx.test.uiautomator:uiautomator:2.4.0-beta01
+
+(##) Included Issues
+
+|Issue Id                                                                          |Issue Description                                                 |
+|----------------------------------------------------------------------------------|------------------------------------------------------------------|
+|[DontUseAccessibilityNodeInfoGetText](DontUseAccessibilityNodeInfoGetText.md.html)|Do not use AccessibilityNodeInfo#getText in a UiAutomatorTestScope|
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("androidx.test.uiautomator:uiautomator:2.4.0-beta01")
+
+// build.gradle
+implementation 'androidx.test.uiautomator:uiautomator:2.4.0-beta01'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.uiautomator)
+
+# libs.versions.toml
+[versions]
+uiautomator = "2.4.0-beta01"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+uiautomator = {
+    module = "androidx.test.uiautomator:uiautomator",
+    version.ref = "uiautomator"
+}
+```
+
+2.4.0-beta01 is the version this documentation was generated from;
+there may be newer versions available.
+
+(##) Changes
+
+* 2.4.0-alpha02: First version includes
+  DontUseAccessibilityNodeInfoGetText.
+
+(##) Version Compatibility
+
+There are multiple older versions available of this library:
+
+| Version            | Date     | Issues | Compatible | Compiled      | Requires |
+|-------------------:|----------|-------:|------------|--------------:|---------:|
+|        2.4.0-beta01|2026/02/11|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha07|2025/12/03|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha06|2025/08/13|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha05|2025/06/18|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha04|2025/06/04|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha03|2025/05/20|       1|         Yes|           8.7+|8.0 and 8.1|
+|       2.4.0-alpha02|2025/05/07|       1|         Yes|           8.7+|8.0 and 8.1|
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

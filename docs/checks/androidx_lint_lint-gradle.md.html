@@ -11,7 +11,7 @@ Min
 Compiled
 :   Lint 8.7+
 Artifact
-:   androidx.lint:lint-gradle:1.0.0-alpha04
+:   androidx.lint:lint-gradle:1.0.0-alpha05
 
 (##) Included Issues
 
@@ -23,6 +23,7 @@ Artifact
 |[FilePropertyDetector](FilePropertyDetector.md.html)                |Avoid using Property<File>                                     |
 |[InternalGradleApiUsage](InternalGradleApiUsage.md.html)            |Avoid using internal Gradle APIs                               |
 |[InternalAgpApiUsage](InternalAgpApiUsage.md.html)                  |Avoid using internal Android Gradle Plugin APIs                |
+|[InternalKgpApiUsage](InternalKgpApiUsage.md.html)                  |Avoid using internal Kotlin Gradle Plugin APIs                 |
 |[WithPluginClasspathUsage](WithPluginClasspathUsage.md.html)        |Flags usage of GradleRunner#withPluginClasspath                |
 |[WithTypeWithoutConfigureEach](WithTypeWithoutConfigureEach.md.html)|Flags usage of withType with a closure instead of configureEach|
 
@@ -34,17 +35,17 @@ Artifact
 
 ```
 // build.gradle.kts
-implementation("androidx.lint:lint-gradle:1.0.0-alpha04")
+implementation("androidx.lint:lint-gradle:1.0.0-alpha05")
 
 // build.gradle
-implementation 'androidx.lint:lint-gradle:1.0.0-alpha04'
+implementation 'androidx.lint:lint-gradle:1.0.0-alpha05'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.lint.gradle)
 
 # libs.versions.toml
 [versions]
-lint-gradle = "1.0.0-alpha04"
+lint-gradle = "1.0.0-alpha05"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -56,7 +57,7 @@ lint-gradle = {
 }
 ```
 
-1.0.0-alpha04 is the version this documentation was generated from;
+1.0.0-alpha05 is the version this documentation was generated from;
 there may be newer versions available.
 
 (##) Changes
@@ -66,6 +67,7 @@ there may be newer versions available.
   WithPluginClasspathUsage, WithTypeWithoutConfigureEach.
 * 1.0.0-alpha03: Adds FilePropertyDetector.
 * 1.0.0-alpha04: Adds GradleLikelyBug.
+* 1.0.0-alpha05: Adds InternalKgpApiUsage.
 
 (##) Version Compatibility
 
@@ -73,6 +75,7 @@ There are multiple older versions available of this library:
 
 | Version            | Date     | Issues | Compatible | Compiled      | Requires |
 |-------------------:|----------|-------:|------------|--------------:|---------:|
+|       1.0.0-alpha05|          |       9|         Yes|           8.7+|      8.7+|
 |       1.0.0-alpha04|          |       8|         Yes|           8.7+|      8.7+|
 |       1.0.0-alpha03|          |       7|         Yes|           8.7+|      8.7+|
 |       1.0.0-alpha02|          |       6|         Yes|    8.0 and 8.1|8.0 and 8.1|

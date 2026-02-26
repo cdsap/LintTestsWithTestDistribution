@@ -35,7 +35,9 @@ Editing
 Implementation
 :   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-lint/src/main/java/androidx/fragment/lint/UnsafeFragmentLifecycleObserverDetector.kt)
 Tests
-:   [Source Code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-lint/src/test/java/androidx/fragment/lint/FragmentLiveDataObserveDetectorTest.kt)
+:   [LintIssueDocGeneratorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/LintIssueDocGeneratorTest.kt)
+Tests
+:   [FragmentLiveDataObserveDetectorTest.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-lint/src/test/java/androidx/fragment/lint/FragmentLiveDataObserveDetectorTest.kt)
 Copyright Year
 :   2019
 
@@ -56,17 +58,17 @@ view is active.
 
 ```
 // build.gradle.kts
-implementation("androidx.fragment:fragment:1.8.6")
+implementation("androidx.fragment:fragment:1.8.9")
 
 // build.gradle
-implementation 'androidx.fragment:fragment:1.8.6'
+implementation 'androidx.fragment:fragment:1.8.9'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.fragment)
 
 # libs.versions.toml
 [versions]
-fragment = "1.8.6"
+fragment = "1.8.9"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -78,7 +80,7 @@ fragment = {
 }
 ```
 
-1.8.6 is the version this documentation was generated from;
+1.8.9 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.fragment:fragment](androidx_fragment_fragment.md.html).

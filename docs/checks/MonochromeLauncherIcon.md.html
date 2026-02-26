@@ -29,16 +29,13 @@ Implementation
 Tests
 :   [Source Code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/MonochromeLauncherIconDetectorTest.kt)
 
-If `android:roundIcon` and `android:icon` are both in your manifest, you
-must either remove the reference to `android:roundIcon` if it is not
-needed; or, supply the monochrome icon in the drawable defined by the
-`android:roundIcon` and `android:icon` attribute.
-
-For example, if `android:roundIcon` and `android:icon` are both in the
-manifest, a launcher might choose to use `android:roundIcon` over
-`android:icon` to display the adaptive app icon. Therefore, your themed
-application iconwill not show if your monochrome attribute is not also
-specified in `android:roundIcon`.
+The system may use the coloring of the user's chosen wallpaper and theme
+to tint app icons. Providing a `<monochrome>` layer (which will be used
+for tinting) for every adaptive icon is strongly recommended, otherwise
+Android 16 QPR 2 and above will simply tint the color version of the
+icon, which may look unusual. Devices running earlier Android versions
+will (with no monochrome layer) show the untinted color icon for your
+app, which will look inconsistent.
 
 (##) Example
 
@@ -52,7 +49,7 @@ res/drawable-ldpi/ic_round_icon.xml:2:Warning: The application adaptive
 roundIcon is missing a monochrome tag [MonochromeLauncherIcon]
     &lt;adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"&gt;
     ^
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -62,7 +59,7 @@ Here are the relevant source files:
     &lt;background android:drawable="@drawable/ic_launcher_background" /&gt;
     &lt;foreground android:drawable="@drawable/ic_launcher_foreground" /&gt;
 &lt;/adaptive-icon&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `res/drawable-ldpi/ic_round_icon.xml`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
@@ -70,7 +67,7 @@ Here are the relevant source files:
     &lt;background android:drawable="@drawable/ic_launcher_background" /&gt;
     &lt;foreground android:drawable="@drawable/ic_launcher_foreground" /&gt;
 &lt;/adaptive-icon&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/AndroidManifest.xml`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
@@ -81,7 +78,7 @@ Here are the relevant source files:
         android:label="@string/app_name" &gt;
     &lt;/application&gt;
 &lt;/manifest&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/MonochromeLauncherIconDetectorTest.kt)

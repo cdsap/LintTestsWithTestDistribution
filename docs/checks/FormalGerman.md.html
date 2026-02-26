@@ -44,24 +44,24 @@ Here is an example of lint warnings produced by this check:
 res/values/config.xml:2:Warning: Formal language "Ihr" detected
 [FormalGerman]
   &lt;string name="my_string_1"&gt;Wie lautet Ihr Name?&lt;/string&gt;
-                                        ^
+                                        ---
 res/values/config.xml:3:Warning: Formal language "Sie?" detected
 [FormalGerman]
   &lt;string name="my_string_2"&gt;Wie heissen Sie?&lt;/string&gt;
-                                         ^
+                                         ---
 res/values/config.xml:4:Warning: Formal language "Ihrem" detected
 [FormalGerman]
   &lt;string name="my_string_3"&gt;Frag nach Ihrem Namen.&lt;/string&gt;
-                                       ^
+                                       -----
 res/values/config.xml:5:Warning: Formal language "Sie" detected
 [FormalGerman]
   &lt;string name="my_string_4"&gt;Wie Sie möchten&lt;/string&gt;
-                                 ^
+                                 ---
 res/values/config.xml:6:Warning: Formal language "Ihre" detected
 [FormalGerman]
   &lt;string name="my_string_5"&gt;Ihre Historie&lt;/string&gt;
-                             ^
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                             ----
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -74,7 +74,7 @@ Here is the source file referenced above:
   &lt;string name="my_string_4"&gt;Wie Sie möchten&lt;/string&gt;
   &lt;string name="my_string_5"&gt;Ihre Historie&lt;/string&gt;
 &lt;/resources&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/vanniktech/lint-rules/tree/master/lint-rules-android-lint/src/test/kotlin/com/vanniktech/lintrules/android/FormalGermanDetectorTest.kt)
