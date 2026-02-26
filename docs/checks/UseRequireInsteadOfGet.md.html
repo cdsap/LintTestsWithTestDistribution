@@ -81,7 +81,7 @@ src/foo/Test.java:16:Error: Use fragment.requireView() instead of
 checkNotNull(fragment.getView()) [UseRequireInsteadOfGet]
     checkNotNull(fragment.getView());
     --------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -98,7 +98,7 @@ public final class Preconditions {
 
   }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/foo/Test.java`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java linenumbers
@@ -147,10 +147,10 @@ class Test {
     checkNotNull(fragment.getView(), "getView");
   }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-lint/src/test/java/androidx/fragment/lint/UseRequireInsteadOfGetTest.kt)
+You can also visit the source code ([UseRequireInsteadOfGetTest.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-lint/src/test/java/androidx/fragment/lint/UseRequireInsteadOfGetTest.kt)
+[LintIssueDocGeneratorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/LintIssueDocGeneratorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
@@ -166,17 +166,17 @@ https://issuetracker.google.com/issues/new?component=460964.
 
 ```
 // build.gradle.kts
-implementation("androidx.fragment:fragment:1.8.6")
+implementation("androidx.fragment:fragment:1.8.9")
 
 // build.gradle
-implementation 'androidx.fragment:fragment:1.8.6'
+implementation 'androidx.fragment:fragment:1.8.9'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.fragment)
 
 # libs.versions.toml
 [versions]
-fragment = "1.8.6"
+fragment = "1.8.9"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -188,7 +188,7 @@ fragment = {
 }
 ```
 
-1.8.6 is the version this documentation was generated from;
+1.8.9 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.fragment:fragment](androidx_fragment_fragment.md.html).

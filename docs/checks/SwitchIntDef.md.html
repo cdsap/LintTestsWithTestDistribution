@@ -68,7 +68,12 @@ src/test/pkg/X.java:95:Warning: Switch statement on an int with known
 associated constant missing case X.LENGTH_SHORT [SwitchIntDef]
     switch (X.getDuration()) {
     ------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/test/pkg/X.java:158:Warning: Switch statement on an int with known
+associated constant missing case LENGTH_INDEFINITE, LENGTH_LONG
+[SwitchIntDef]
+    return switch(duration) { // not ok
+           ^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -202,11 +207,45 @@ public class X {
                 break;
         }
     }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/AnnotationDetectorTest.kt)
+    public static void testDefaultOk(@Duration int duration) {
+        switch (duration) { // ok
+          case LENGTH_SHORT -> {
+            System.out.println("Short!");
+          }
+          default -> {
+            System.out.println("Default!");
+          }
+        }
+    }
+
+    public static int testSwitchExprDefaultOk(@Duration int duration) {
+        return switch (duration) { // ok
+          case LENGTH_SHORT -> 1;
+          case LENGTH_INDEFINITE -> 3;
+          case LENGTH_LONG -> 2;
+          default -> throw new IllegalStateException("Unreachable");
+        };
+    }
+
+    public static int testSwitchExprDefaultAlsoOk(@Duration int duration) {
+        return switch (duration) { // ok
+          case LENGTH_SHORT -> 1;
+          default -> 2;
+        };
+    }
+
+    public static int testSwitchExprDefaultNotOk(@Duration int duration) {
+        return switch(duration) { // not ok
+          case LENGTH_SHORT -> 1;
+          default -> throw new IllegalStateException("Unreachable");
+        };
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the source code ([AnnotationDetectorTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/AnnotationDetectorTest.kt)
+[ProjectInitializerTest.kt](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/ProjectInitializerTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test

@@ -44,7 +44,7 @@ res/font/font1.xml:4:Error: A downloadable font cannot have a <font> sub
 tag [FontValidation]
     &lt;font
      ----
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -58,10 +58,10 @@ Here is the source file referenced above:
         android:fontWeight="400"
         android:font="@font/monserrat" /&gt;
 &lt;/font-family&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/FontDetectorTest.java)
+You can also visit the source code ([FontDetectorTest.java](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/FontDetectorTest.java)
+[MainTest.java](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/MainTest.java)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test

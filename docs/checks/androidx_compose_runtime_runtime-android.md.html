@@ -18,7 +18,7 @@ Min
 Compiled
 :   Lint 8.7+
 Artifact
-:   androidx.compose.runtime:runtime-android:1.9.0-alpha01
+:   androidx.compose.runtime:runtime-android:1.11.0-alpha06
 
 (##) Included Issues
 
@@ -49,17 +49,17 @@ Artifact
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.runtime:runtime-android:1.9.0-alpha01")
+implementation("androidx.compose.runtime:runtime-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.runtime:runtime-android:1.9.0-alpha01'
+implementation 'androidx.compose.runtime:runtime-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.runtime.android)
 
 # libs.versions.toml
 [versions]
-runtime-android = "1.9.0-alpha01"
+runtime-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -71,11 +71,11 @@ runtime-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.runtime:runtime-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.runtime:runtime-lint:1.11.0-alpha06`.
 
 
 (##) Changes
@@ -87,7 +87,7 @@ You can also use `androidx.compose.runtime:runtime-lint:1.9.0-alpha01`.
   FlowOperatorInvokedInComposition, MutableCollectionMutableState,
   OpaqueUnitKey, ProduceStateDoesNotAssignValue, RememberReturnType,
   StateFlowValueCalledInComposition, UnrememberedMutableState.
-* 1.9.0-alpha01: Adds FrequentlyChangingValue, RememberInComposition.
+* 1.9.0: Adds FrequentlyChangingValue, RememberInComposition.
 
 (##) Version Compatibility
 
@@ -95,7 +95,26 @@ There are multiple older versions available of this library:
 
 | Version            | Date     | Issues | Compatible | Compiled      | Requires |
 |-------------------:|----------|-------:|------------|--------------:|---------:|
-|       1.9.0-alpha01|2025/04/23|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha06|2026/02/25|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha05|2026/02/11|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha04|2026/01/29|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha03|2026/01/14|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha02|2025/12/17|      16|         Yes|           8.7+|      8.7+|
+|      1.11.0-alpha01|2025/12/03|      16|         Yes|           8.7+|      8.7+|
+|              1.10.4|2026/02/25|      16|         Yes|           8.7+|      8.7+|
+|              1.10.3|2026/02/11|      16|         Yes|           8.7+|      8.7+|
+|              1.10.2|2026/01/29|      16|         Yes|           8.7+|      8.7+|
+|              1.10.1|2026/01/14|      16|         Yes|           8.7+|      8.7+|
+|              1.10.0|2025/12/03|      16|         Yes|           8.7+|      8.7+|
+|               1.9.5|2025/11/19|      16|         Yes|           8.7+|      8.7+|
+|               1.9.4|2025/10/22|      16|         Yes|           8.7+|      8.7+|
+|               1.9.3|2025/10/08|      16|         Yes|           8.7+|      8.7+|
+|               1.9.2|2025/09/24|      16|         Yes|           8.7+|      8.7+|
+|               1.9.1|2025/09/10|      16|         Yes|           8.7+|      8.7+|
+|               1.9.0|2025/08/13|      16|         Yes|           8.7+|      8.7+|
+|               1.8.3|2025/06/18|      14|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
+|               1.8.2|2025/05/20|      14|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
+|               1.8.1|2025/05/07|      14|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
 |               1.8.0|2025/04/23|      14|      No[^1]|    8.0 and 8.1|8.0 and 8.1|
 |               1.7.8|2025/02/12|      14|      No[^2]|    8.0 and 8.1|8.0 and 8.1|
 |               1.7.7|2025/01/29|      14|      No[^2]|    8.0 and 8.1|8.0 and 8.1|

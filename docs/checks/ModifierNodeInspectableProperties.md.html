@@ -49,7 +49,7 @@ modifier.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/test/Element.kt:8:Information: Element does not override
+src/test/Element.kt:8:Hint: Element does not override
 inspectableProperties(). The layout inspector will use the default
 implementation of this function, which will attempt to read Element's
 properties reflectively. Override inspectableProperties() if you'd like
@@ -57,7 +57,7 @@ to customize this modifier's presentation in the layout inspector.
 [ModifierNodeInspectableProperties]
     class Element : ModifierNodeElement&lt;Modifier.Node&gt;() {
           -------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -73,7 +73,7 @@ class Element : ModifierNodeElement<Modifier.Node>() {
     override fun create() = object : Modifier.Node() {}
     override fun update(node: Modifier.Node) = node
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/ui/ui-lint/src/test/java/androidx/compose/ui/lint/ModifierNodeInspectablePropertiesDetectorTest.kt)
@@ -92,17 +92,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.ui:ui-android:1.9.0-alpha01")
+implementation("androidx.compose.ui:ui-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.ui:ui-android:1.9.0-alpha01'
+implementation 'androidx.compose.ui:ui-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.ui.android)
 
 # libs.versions.toml
 [versions]
-ui-android = "1.9.0-alpha01"
+ui-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -114,11 +114,11 @@ ui-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.ui:ui-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.ui:ui-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.ui:ui-android](androidx_compose_ui_ui-android.md.html).

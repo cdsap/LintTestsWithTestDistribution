@@ -36,6 +36,9 @@ Tests
 Ensures that `<data-extraction-rules`> and `<full-backup-content>`
 files, which configure backup options, are valid.
 
+!!! Tip
+   This lint check has an associated quickfix available in the IDE.
+
 (##) Example
 
 Here is an example of lint warnings produced by this check:
@@ -48,7 +51,7 @@ res/xml/full_backup_content.xml:5:Error: foo.xml is not in an included
 path [FullBackupContent]
     &lt;exclude domain="sharedpref" path="foo.xml"/&gt;
                                        -------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -56,13 +59,12 @@ Here are the relevant source files:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
 &lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="my.pkg" &gt;
     &lt;application
-        android:fullBackupContent="@xml/full_backup_content"&gt;
+        android:fullBackupContent="@xml/full_backup_content"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:label="@string/app_name"&gt;
-        ...
     &lt;/application&gt;
 &lt;/manifest&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `res/xml/data_extraction_rules.xml`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
@@ -79,7 +81,7 @@ Here are the relevant source files:
         &lt;include domain="sharedpref" path="something"/&gt;
     &lt;/device-transfer&gt;
 &lt;/data-extraction-rules&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `res/xml/full_backup_content.xml`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
@@ -89,7 +91,7 @@ Here are the relevant source files:
      &lt;exclude domain="file" path="dd/ss/foo.txt"/&gt;
      &lt;exclude domain="sharedpref" path="foo.xml"/&gt;
 &lt;/full-backup-content&gt;
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/FullBackupContentDetectorTest.kt)

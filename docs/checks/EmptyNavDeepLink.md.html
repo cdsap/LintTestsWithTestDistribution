@@ -51,7 +51,7 @@ src/com/example/test.kt:6:Error: Creation of empty NavDeepLink
 [EmptyNavDeepLink]
     navDeepLink { }
     -----------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -64,14 +64,14 @@ import androidx.navigation.navDeepLink
 fun createDeepLink() {
     navDeepLink { }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/androidx/navigation/test.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
 package androidx.navigation
 
 public fun navDeepLink(deepLinkBuilder: NavDeepLinkDslBuilder.() -> Unit): NavDeepLink {}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/navigation/navigation-common-lint/src/test/java/androidx/navigation/common/lint/EmptyNavDeepLinkDetectorTest.kt)
@@ -90,17 +90,17 @@ https://issuetracker.google.com/issues/new?component=409828.
 
 ```
 // build.gradle.kts
-implementation("androidx.navigation:navigation-common:2.9.0-rc01")
+implementation("androidx.navigation:navigation-common:2.9.7")
 
 // build.gradle
-implementation 'androidx.navigation:navigation-common:2.9.0-rc01'
+implementation 'androidx.navigation:navigation-common:2.9.7'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.navigation.common)
 
 # libs.versions.toml
 [versions]
-navigation-common = "2.9.0-rc01"
+navigation-common = "2.9.7"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -112,7 +112,7 @@ navigation-common = {
 }
 ```
 
-2.9.0-rc01 is the version this documentation was generated from;
+2.9.7 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.navigation:navigation-common](androidx_navigation_navigation-common.md.html).

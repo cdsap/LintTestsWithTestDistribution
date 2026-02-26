@@ -1,0 +1,188 @@
+<meta charset="utf-8">
+(#) All Files Access Insights
+
+!!! WARNING: All Files Access Insights
+   This is a warning.
+
+Id
+:   `AllFilesAccessPolicy`
+Summary
+:   All Files Access Insights
+Severity
+:   Warning
+Category
+:   Play Policy
+Platform
+:   Android
+Vendor
+:   Play policy insights beta
+Min
+:   Lint 8.2 to 8.6
+Compiled
+:   Lint 8.7+
+Artifact
+:   [com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html)
+Since
+:   0.1.3
+Affects
+:   Manifest files
+Editing
+:   This check runs on the fly in the IDE editor
+
+Google Play policy treats access to user files and directories as
+sensitive and high risk access, so we restrict use of the
+`MANAGE_EXTERNAL_STORAGE` permission on Android 11+. You must have
+essential core app functionality that requires broad access to this
+permission for a user-facing purpose, and never for third parties. This
+helps prevent unnecessary data collection and protects users' privacy.
+Apps requesting this permission must clearly prompt users so they can
+make an informed privacy decision, and get approval through Play’s app
+review.
+
+**Dos:**
+
+- Prioritize using privacy-friendly alternatives instead, like Storage
+  Access Framework or MediaStore API.
+- Declare this permissions when you submit a declaration form in your
+  Play Console.
+- Clearly define and document your app's core functionality in your app
+  review.
+- Clearly prompt users to enable “All files access” for your app under
+  “Special app access” settings.
+
+**Don'ts:**
+
+- Request the `MANAGE_EXTERNAL_STORAGE` permission for non-permitted
+  use-cases like Media Files access or any File selection activity
+  where the user manually selects individual files.
+- Misrepresent the core functionality of your app.
+- Store or share data beyond essential and disclosed needs.
+
+**Helpful Links:**
+
+See Policy page: https://goo.gle/play-policy-all-files-access
+See Help Center article: https://goo.gle/play-help-all-files-access
+See Declaration form:  https://goo.gle/play-permission-decl-form
+
+Always review the full policy in the Policy Center to ensure
+compliance.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+AndroidManifest.xml:4:Warning: To protect user data,
+MANAGE_EXTERNAL_STORAGE requires essential core functionality and Google
+Play’s approval. [AllFilesAccessPolicy]
+  &lt;uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/&gt;
+                   ---------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`AndroidManifest.xml`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+  &lt;uses-sdk android:targetSdkVersion="30" /&gt;
+  &lt;uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/&gt;
+&lt;/manifest&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](/policyinsights/src/test/java/com/google/play/policy/insights/AllFilesAccessPolicyDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `AllFilesAccessPolicyDetector.testFlagsManageExternalStorage`.
+To report a problem with this extracted sample, contact
+Play policy insights beta.
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("com.google.play.policy.insights:insights-lint:0.1.4")
+
+// build.gradle
+implementation 'com.google.play.policy.insights:insights-lint:0.1.4'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.insights.lint)
+
+# libs.versions.toml
+[versions]
+insights-lint = "0.1.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+insights-lint = {
+    module = "com.google.play.policy.insights:insights-lint",
+    version.ref = "insights-lint"
+}
+```
+
+0.1.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+[Additional details about com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Adding the suppression attribute
+  `tools:ignore="AllFilesAccessPolicy"` on the problematic XML element
+  (or one of its enclosing elements). You may also need to add the
+  following namespace declaration on the root element in the XML file
+  if it's not already there:
+  `xmlns:tools="http://schemas.android.com/tools"`.
+
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;manifest xmlns:tools="http://schemas.android.com/tools"&gt;
+      ...
+      &lt;uses-permission tools:ignore="AllFilesAccessPolicy" .../&gt;
+    ...
+  &lt;/manifest&gt;
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="AllFilesAccessPolicy" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'AllFilesAccessPolicy'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore AllFilesAccessPolicy ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

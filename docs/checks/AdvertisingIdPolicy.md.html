@@ -1,0 +1,208 @@
+<meta charset="utf-8">
+(#) Advertising Id Insights
+
+!!! WARNING: Advertising Id Insights
+   This is a warning.
+
+Id
+:   `AdvertisingIdPolicy`
+Summary
+:   Advertising Id Insights
+Severity
+:   Warning
+Category
+:   Play Policy
+Platform
+:   Android
+Vendor
+:   Play policy insights beta
+Min
+:   Lint 8.2 to 8.6
+Compiled
+:   Lint 8.7+
+Artifact
+:   [com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html)
+Since
+:   0.1.3
+Affects
+:   Kotlin and Java files and manifest files
+Editing
+:   This check runs on the fly in the IDE editor
+
+The Android advertising identifier (AAID) must only be used for
+advertising and user analytics; although we urge you to instead
+transition to App Set ID for analytics. You must respect users' opt-out
+selections and acquire explicit user consent if you link the AAID to
+personally identifiable information (PII). It is crucial to be
+transparent, so disclose any AAID collection and use in a legally
+adequate privacy policy.
+
+**Dos:**
+
+- Submit a declaration form in your Play Console for Google Play
+  services permission.
+- Use App Set ID for non-ads use cases (analytics, fraud).
+
+**Don'ts:**
+
+- Use persistent identifiers for advertising instead of AAID.
+- Link AAID to PII for any analytics purposes -even with consent.
+- Allow third-party code in your app to violate this policy.
+
+**Helpful Links:**
+
+See Policy page: https://goo.gle/play-policy-advertising-id
+See Help Center article:
+https://goo.gle/play-help-advertising-identifier
+See Declaration form:  https://goo.gle/play-permission-decl-form
+
+Always review the full policy in the Policy Center to ensure
+compliance.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+AndroidManifest.xml:3:Warning: Use Advertising Identifier only for
+advertising or user analytics. Respect user choices (opt-outs), get
+consent for PII links, and disclose use clearly. [AdvertisingIdPolicy]
+   &lt;uses-permission android:name="com.google.android.gms.permission.AD_ID"/&gt;
+                    ------------------------------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`AndroidManifest.xml`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~xml linenumbers
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+   &lt;uses-permission android:name="com.google.android.gms.permission.AD_ID"/&gt;
+  &lt;uses-sdk android:targetSdkVersion="34"/&gt;
+&lt;/manifest&gt;
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](/policyinsights/src/test/java/com/google/play/policy/insights/AdvertisingIdPolicyDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `AdvertisingIdPolicyDetector.testFlagsAdIdPermission`.
+To report a problem with this extracted sample, contact
+Play policy insights beta.
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("com.google.play.policy.insights:insights-lint:0.1.4")
+
+// build.gradle
+implementation 'com.google.play.policy.insights:insights-lint:0.1.4'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.insights.lint)
+
+# libs.versions.toml
+[versions]
+insights-lint = "0.1.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+insights-lint = {
+    module = "com.google.play.policy.insights:insights-lint",
+    version.ref = "insights-lint"
+}
+```
+
+0.1.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+[Additional details about com.google.play.policy.insights:insights-lint](com_google_play_policy_insights_insights-lint.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Adding the suppression attribute
+  `tools:ignore="AdvertisingIdPolicy"` on the problematic XML element
+  (or one of its enclosing elements). You may also need to add the
+  following namespace declaration on the root element in the XML file
+  if it's not already there:
+  `xmlns:tools="http://schemas.android.com/tools"`.
+
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;manifest xmlns:tools="http://schemas.android.com/tools"&gt;
+      ...
+      &lt;uses-permission tools:ignore="AdvertisingIdPolicy" .../&gt;
+    ...
+  &lt;/manifest&gt;
+  ```
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("AdvertisingIdPolicy")
+  fun method() {
+     getId(...)
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("AdvertisingIdPolicy")
+  void method() {
+     getId(...);
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection AdvertisingIdPolicy
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="AdvertisingIdPolicy" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'AdvertisingIdPolicy'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore AdvertisingIdPolicy ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

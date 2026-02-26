@@ -1,0 +1,186 @@
+<meta charset="utf-8">
+(#) Potentially sensitive information logged to Logcat
+
+!!! WARNING: Potentially sensitive information logged to Logcat
+   This is a warning.
+
+Id
+:   `LogInfoDisclosure`
+Summary
+:   Potentially sensitive information logged to Logcat
+Severity
+:   Warning
+Category
+:   Security
+Platform
+:   Any
+Vendor
+:   Google - Android 3P Vulnerability Research
+Contact
+:   https://github.com/google/android-security-lints
+Feedback
+:   https://github.com/google/android-security-lints/issues
+Min
+:   Lint 4.1
+Compiled
+:   Lint 8.0 and 8.1
+Artifact
+:   [com.android.security.lint:lint](com_android_security_lint_lint.md.html)
+Since
+:   1.0.4
+Affects
+:   Kotlin and Java files
+Editing
+:   This check runs on the fly in the IDE editor
+See
+:   https://goo.gle/LogInfoDisclosure
+Implementation
+:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/main/java/com/example/lint/checks/LogcatDetector.kt)
+Tests
+:   [Source Code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/LogcatDetectorTest.kt)
+Copyright Year
+:   2024
+
+Sensitive information such as application secrets should never be logged
+to logcat. Any sensitive data should therefore be removed from logcat
+logs. Ensure all logging to logcat is sanitized in non-debug versions of
+your application.
+
+!!! Tip
+   This lint check has an associated quickfix available in the IDE.
+
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+src/MainActivity.java:7:Warning: Sensitive data should never be logged
+to logcat [LogInfoDisclosure]
+    Log.wtf("testpasswdtest", "test");
+    ---------------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`src/MainActivity.java`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~java linenumbers
+import android.app.Activity;
+import android.util.Log;
+
+public class MainActivity extends Activity {
+
+    private void testLogs() {
+        Log.wtf("testpasswdtest", "test");
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://github.com/google/android-security-lints/tree/main/checks/src/test/java/com/example/lint/checks/LogcatDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `LogcatDetector.logInfoDisclosureMethod_whenSuspiciousStringPresent_showsWarning`.
+To report a problem with this extracted sample, visit
+https://github.com/google/android-security-lints/issues.
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project. This lint check is included in the lint documentation,
+   but the Android team may or may not agree with its recommendations.
+
+```
+// build.gradle.kts
+lintChecks("com.android.security.lint:lint:1.0.4")
+
+// build.gradle
+lintChecks 'com.android.security.lint:lint:1.0.4'
+
+// build.gradle.kts with version catalogs:
+lintChecks(libs.com.android.security.lint.lint)
+
+# libs.versions.toml
+[versions]
+com-android-security-lint-lint = "1.0.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+com-android-security-lint-lint = {
+    module = "com.android.security.lint:lint",
+    version.ref = "com-android-security-lint-lint"
+}
+```
+
+1.0.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+[Additional details about com.android.security.lint:lint](com_android_security_lint_lint.md.html).
+(##) Suppressing
+
+You can suppress false positives using one of the following mechanisms:
+
+* Using a suppression annotation like this on the enclosing
+  element:
+
+  ```kt
+  // Kotlin
+  @Suppress("LogInfoDisclosure")
+  fun method() {
+     d(...)
+  }
+  ```
+
+  or
+
+  ```java
+  // Java
+  @SuppressWarnings("LogInfoDisclosure")
+  void method() {
+     d(...);
+  }
+  ```
+
+* Using a suppression comment like this on the line above:
+
+  ```kt
+  //noinspection LogInfoDisclosure
+  problematicStatement()
+  ```
+
+* Using a special `lint.xml` file in the source tree which turns off
+  the check in that folder and any sub folder. A simple file might look
+  like this:
+  ```xml
+  &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+  &lt;lint&gt;
+      &lt;issue id="LogInfoDisclosure" severity="ignore" /&gt;
+  &lt;/lint&gt;
+  ```
+  Instead of `ignore` you can also change the severity here, for
+  example from `error` to `warning`. You can find additional
+  documentation on how to filter issues by path, regular expression and
+  so on
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/lintxml.md.html).
+
+* In Gradle projects, using the DSL syntax to configure lint. For
+  example, you can use something like
+  ```gradle
+  lintOptions {
+      disable 'LogInfoDisclosure'
+  }
+  ```
+  In Android projects this should be nested inside an `android { }`
+  block.
+
+* For manual invocations of `lint`, using the `--ignore` flag:
+  ```
+  $ lint --ignore LogInfoDisclosure ...`
+  ```
+
+* Last, but not least, using baselines, as discussed
+  [here](https://googlesamples.github.io/android-custom-lint-rules/usage/baselines.md.html).
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

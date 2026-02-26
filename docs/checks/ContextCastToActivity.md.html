@@ -58,7 +58,7 @@ src/com/example/MyActivity.kt:13:Error: LocalContext should not be cast
 to Activity, use LocalActivity instead [ContextCastToActivity]
     val activity3 = LocalContext.current as? MyActivity
                     -----------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -78,7 +78,7 @@ fun Test() {
     val activity2 = LocalContext.current as? Activity
     val activity3 = LocalContext.current as? MyActivity
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/activity/activity-compose-lint/src/test/java/androidx/activity/compose/lint/LocalContextCastIssueDetectorTest.kt)
@@ -97,17 +97,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.activity:activity-compose:1.11.0-rc01")
+implementation("androidx.activity:activity-compose:1.13.0-rc01")
 
 // build.gradle
-implementation 'androidx.activity:activity-compose:1.11.0-rc01'
+implementation 'androidx.activity:activity-compose:1.13.0-rc01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.activity.compose)
 
 # libs.versions.toml
 [versions]
-activity-compose = "1.11.0-rc01"
+activity-compose = "1.13.0-rc01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -119,7 +119,7 @@ activity-compose = {
 }
 ```
 
-1.11.0-rc01 is the version this documentation was generated from;
+1.13.0-rc01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.activity:activity-compose](androidx_activity_activity-compose.md.html).

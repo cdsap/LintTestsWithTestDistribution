@@ -58,7 +58,7 @@ JsonAdapter or JsonAdapter.Factory.
 [MoshiUsageAdaptedByRequiresAdapter]
   @AdaptedBy(NotAnAdapter::class) val value2: String
              -------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -81,13 +81,13 @@ class Example2(val value: String)
 class Example3
 
 @JsonClass(generateAdapter = true)
-data class Example3(
+data class Example4(
   @AdaptedBy(CustomAdapter::class) val value1: String,
   @AdaptedBy(NotAnAdapter::class) val value2: String
 )
 
 @AdaptedBy(CustomAdapterMissingKeep::class)
-class Example4
+class Example5
 
 @Keep
 abstract class CustomFactory : JsonAdapter.Factory
@@ -95,7 +95,7 @@ abstract class CustomFactory : JsonAdapter.Factory
 abstract class CustomAdapter : JsonAdapter<String>()
 class NotAnAdapter
 abstract class CustomAdapterMissingKeep : JsonAdapter<String>()
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/MoshiUsageDetectorTest.kt)

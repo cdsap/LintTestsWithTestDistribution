@@ -46,67 +46,115 @@ class instance with the arguments filled in.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/com/example/test.kt:7:Error: The route should be a destination class
+src/com/example/test.kt:8:Error: The route should be a destination class
 instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestClass)
                                    ---------
-src/com/example/test.kt:8:Error: The route should be a destination class
+src/com/example/test.kt:9:Error: The route should be a destination class
 instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestClass::class)
                                    ----------------
-src/com/example/test.kt:9:Error: The route should be a destination class
-instance or destination object. [WrongNavigateRouteType]
+src/com/example/test.kt:10:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestClassWithArg)
                                    ----------------
-src/com/example/test.kt:10:Error: The route should be a destination
+src/com/example/test.kt:11:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestClassWithArg::class)
                                    -----------------------
-src/com/example/test.kt:11:Error: The route should be a destination
+src/com/example/test.kt:12:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestInterface)
                                    -------------
-src/com/example/test.kt:12:Error: The route should be a destination
+src/com/example/test.kt:13:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestInterface::class)
                                    --------------------
-src/com/example/test.kt:13:Error: The route should be a destination
+src/com/example/test.kt:14:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = InterfaceChildClass)
                                    -------------------
-src/com/example/test.kt:14:Error: The route should be a destination
+src/com/example/test.kt:15:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = InterfaceChildClass::class)
                                    --------------------------
-src/com/example/test.kt:15:Error: The route should be a destination
+src/com/example/test.kt:16:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestAbstract)
                                    ------------
-src/com/example/test.kt:16:Error: The route should be a destination
+src/com/example/test.kt:17:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = TestAbstract::class)
                                    -------------------
-src/com/example/test.kt:17:Error: The route should be a destination
+src/com/example/test.kt:18:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = AbstractChildClass)
                                    ------------------
-src/com/example/test.kt:18:Error: The route should be a destination
+src/com/example/test.kt:19:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = AbstractChildClass::class)
                                    -------------------------
-src/com/example/test.kt:19:Error: The route should be a destination
+src/com/example/test.kt:20:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = InterfaceChildClass::class)
                                    --------------------------
-src/com/example/test.kt:20:Error: The route should be a destination
+src/com/example/test.kt:21:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = Outer.InnerClass)
                                    ----------------
-src/com/example/test.kt:21:Error: The route should be a destination
+src/com/example/test.kt:22:Error: The route should be a destination
 class instance or destination object. [WrongNavigateRouteType]
     navController.navigate(route = Outer.InnerClass::class)
                                    -----------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/com/example/test.kt:25:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestClassComp)
+                                   -------------
+src/com/example/test.kt:26:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestClassComp::class)
+                                   --------------------
+src/com/example/test.kt:27:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestClassWithArgComp)
+                                   --------------------
+src/com/example/test.kt:28:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestClassWithArgComp::class)
+                                   ---------------------------
+src/com/example/test.kt:29:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = OuterComp.InnerClassComp)
+                                   ------------------------
+src/com/example/test.kt:30:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = OuterComp.InnerClassComp::class)
+                                   -------------------------------
+src/com/example/test.kt:31:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = InterfaceChildClassComp)
+                                   -----------------------
+src/com/example/test.kt:32:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = InterfaceChildClassComp::class)
+                                   ------------------------------
+src/com/example/test.kt:33:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = AbstractChildClassComp)
+                                   ----------------------
+src/com/example/test.kt:34:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = AbstractChildClassComp::class)
+                                   -----------------------------
+src/com/example/test.kt:35:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestAbstractComp)
+                                   ----------------
+src/com/example/test.kt:36:Error: The route should be a destination
+class instance or destination object. [WrongNavigateRouteType]
+    navController.navigate(route = TestAbstractComp::class)
+                                   -----------------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -114,7 +162,8 @@ Here is the source file referenced above:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
 package com.example
 
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.test.*
 
 fun createGraph() {
     val navController = NavController()
@@ -133,8 +182,22 @@ fun createGraph() {
     navController.navigate(route = InterfaceChildClass::class)
     navController.navigate(route = Outer.InnerClass)
     navController.navigate(route = Outer.InnerClass::class)
+
+    //classes with companion object to simulate marked with @Serializable
+    navController.navigate(route = TestClassComp)
+    navController.navigate(route = TestClassComp::class)
+    navController.navigate(route = TestClassWithArgComp)
+    navController.navigate(route = TestClassWithArgComp::class)
+    navController.navigate(route = OuterComp.InnerClassComp)
+    navController.navigate(route = OuterComp.InnerClassComp::class)
+    navController.navigate(route = InterfaceChildClassComp)
+    navController.navigate(route = InterfaceChildClassComp::class)
+    navController.navigate(route = AbstractChildClassComp)
+    navController.navigate(route = AbstractChildClassComp::class)
+    navController.navigate(route = TestAbstractComp)
+    navController.navigate(route = TestAbstractComp::class)
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/navigation/navigation-runtime-lint/src/test/java/androidx/navigation/runtime/lint/WrongNavigateRouteDetectorTest.kt)
@@ -153,17 +216,17 @@ https://issuetracker.google.com/issues/new?component=409828.
 
 ```
 // build.gradle.kts
-implementation("androidx.navigation:navigation-runtime:2.9.0-rc01")
+implementation("androidx.navigation:navigation-runtime:2.9.7")
 
 // build.gradle
-implementation 'androidx.navigation:navigation-runtime:2.9.0-rc01'
+implementation 'androidx.navigation:navigation-runtime:2.9.7'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.navigation.runtime)
 
 # libs.versions.toml
 [versions]
-navigation-runtime = "2.9.0-rc01"
+navigation-runtime = "2.9.7"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -175,7 +238,7 @@ navigation-runtime = {
 }
 ```
 
-2.9.0-rc01 is the version this documentation was generated from;
+2.9.7 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.navigation:navigation-runtime](androidx_navigation_navigation-runtime.md.html).

@@ -51,17 +51,15 @@ this property to Gson, which may or may not handle it.
 
 Here is an example of lint warnings produced by this check:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/slack/model/Example.kt:25:Information: Concrete Collection type
-'ArrayList' is not natively supported by Moshi.
-[MoshiUsageNonMoshiClassCollection]
+src/slack/model/Example.kt:25:Hint: Concrete Collection type 'ArrayList'
+is not natively supported by Moshi. [MoshiUsageNonMoshiClassCollection]
   val concreteList: ArrayList&lt;Int&gt;,
                     --------------
-src/slack/model/Example.kt:26:Information: Concrete Collection type
-'HashSet' is not natively supported by Moshi.
-[MoshiUsageNonMoshiClassCollection]
+src/slack/model/Example.kt:26:Hint: Concrete Collection type 'HashSet'
+is not natively supported by Moshi. [MoshiUsageNonMoshiClassCollection]
   val concreteSet: HashSet&lt;Int&gt;,
                    ------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -70,7 +68,7 @@ Here are the relevant source files:
 package external
 
 class ExternalType
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/external/ExternalTypeAnnotated.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
@@ -80,7 +78,7 @@ import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class ExternalTypeAnnotated(val value: String)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `src/slack/model/Example.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
@@ -147,7 +145,7 @@ abstract class DateFactory : JsonAdapter.Factory
 
 @JsonClass(generateAdapter = true)
 data class CustomGenericType<T>(val value: T)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://github.com/slackhq/slack-lints/tree/main/slack-lint-checks/src/test/java/slack/lint/MoshiUsageDetectorTest.kt)

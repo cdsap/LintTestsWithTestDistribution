@@ -32,60 +32,13 @@ Affects
 :   Kotlin and Java files and test sources
 Editing
 :   This check runs on the fly in the IDE editor
-Implementation
-:   [Source Code](https://github.com/slackhq/compose-lints/tree/main/compose-lint-checks/src/main/java/slack/lint/compose/ModifierWithoutDefaultDetector.kt)
 Tests
-:   [Source Code](https://github.com/slackhq/compose-lints/tree/main/compose-lint-checks/src/test/java/slack/lint/compose/ModifierWithoutDefaultDetectorTest.kt)
-Copyright Year
-:   2023
+:   [Source Code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/LintIssueDocGeneratorTest.kt)
 
 This @Composable function has a modifier parameter but it doesn't have a
 default value.See
 https://slackhq.github.io/compose-lints/rules/#modifiers-should-have-default-parameters
 for more information.
-
-!!! Tip
-   This lint check has an associated quickfix available in the IDE.
-
-(##) Example
-
-Here is an example of lint warnings produced by this check:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
-src/test.kt:5:Error: This @Composable function has a modifier parameter
-but it doesn't have a default value.See
-https://slackhq.github.io/compose-lints/rules/#modifiers-should-have-default-parameters
-for more information. [ComposeModifierWithoutDefault]
-fun Something(modifier: Modifier) { }
-              ------------------
-src/test.kt:7:Error: This @Composable function has a modifier parameter
-but it doesn't have a default value.See
-https://slackhq.github.io/compose-lints/rules/#modifiers-should-have-default-parameters
-for more information. [ComposeModifierWithoutDefault]
-fun Something(modifier: Modifier = Modifier, modifier2: Modifier) { }
-                                             -------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Here is the source file referenced above:
-
-`src/test.kt`:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-
-@Composable
-fun Something(modifier: Modifier) { }
-@Composable
-fun Something(modifier: Modifier = Modifier, modifier2: Modifier) { }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-You can also visit the
-[source code](https://github.com/slackhq/compose-lints/tree/main/compose-lint-checks/src/test/java/slack/lint/compose/ModifierWithoutDefaultDetectorTest.kt)
-for the unit tests for this check to see additional scenarios.
-
-The above example was automatically extracted from the first unit test
-found for this lint check, `ModifierWithoutDefaultDetector.errors when a Composable has modifiers but without default values`.
-To report a problem with this extracted sample, visit
-https://github.com/slackhq/compose-lints/issues.
 
 (##) Including
 

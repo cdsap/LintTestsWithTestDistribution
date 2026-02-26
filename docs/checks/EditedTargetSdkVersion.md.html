@@ -29,14 +29,13 @@ Implementation
 Tests
 :   [Source Code](https://cs.android.com/android-studio/platform/tools/base/+/mirror-goog-studio-main:lint/libs/lint-tests/src/test/java/com/android/tools/lint/checks/GradleDetectorTest.kt)
 
-Updating the `targetSdkVersion` of an app is seemingly easy: just
-increment the `targetSdkVersion` number in the manifest file!
+Updating the `targetSdk` of an app is seemingly easy: just increment the
+`targetSdk` number in the build script!
 
-But that's not actually safe. The `targetSdkVersion` controls a wide
-range of behaviors that change from release to release, and to update,
-you should carefully consult the documentation to see what has changed,
-how your app may need to adjust, and then of course, carefully test
-everything.
+But that's not actually safe. The `targetSdk` controls a wide range of
+behaviors that change from release to release, and to update, you should
+carefully consult the documentation to see what has changed, how your
+app may need to adjust, and then of course, carefully test everything.
 
 In new versions of Android Studio, there is a special migration
 assistant, available from the tools menu (and as a quickfix from this
@@ -44,15 +43,14 @@ lint warning) which analyzes your specific app and filters the set of
 applicable migration steps to those needed for your app.
 
 This lint check does something very simple: it just detects whether it
-looks like you've manually edited the targetSdkVersion field in a
-build.gradle file. Obviously, as part of doing the above careful steps,
-you may end up editing the value, which would trigger the check -- and
-it's safe to ignore it; this lint check *only* runs in the IDE, not from
-the command line; it's sole purpose to bring *awareness* to the (many)
-developers who haven't been aware of this issue and have just bumped the
-targetSdkVersion, recompiled, and uploaded their updated app to the
-Google Play Store, sometimes leading to crashes or other problems on
-newer devices.
+looks like you've manually edited the targetSdk field in a build script.
+Obviously, as part of doing the above careful steps, you may end up
+editing the value, which would trigger the check -- and it's safe to
+ignore it; this lint check *only* runs in the IDE, not from the command
+line; it's sole purpose to bring *awareness* to the (many) developers
+who haven't been aware of this issue and have just bumped the targetSdk,
+recompiled, and uploaded their updated app to the Google Play Store,
+sometimes leading to crashes or other problems on newer devices.
 
 (##) Suppressing
 

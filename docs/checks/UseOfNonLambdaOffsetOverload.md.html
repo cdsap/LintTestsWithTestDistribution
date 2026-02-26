@@ -43,6 +43,53 @@ Copyright Year
 to avoid unnecessary recompositions. `Modifier.offset{ }` is preferred
 in the cases where the arguments are backed by a `State`.
 
+(##) Example
+
+Here is an example of lint warnings produced by this check:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~text
+src/test/test.kt:17:Warning: State backed values should use the lambda
+overload of Modifier.offset [UseOfNonLambdaOffsetOverload]
+    Modifier.offset(offsetStateful.value, yAxis)
+             ------
+src/test/test.kt:18:Warning: State backed values should use the lambda
+overload of Modifier.offset [UseOfNonLambdaOffsetOverload]
+    Modifier.absoluteOffset(0.dp, offsetStateful.value)
+             --------------
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is the source file referenced above:
+
+`src/test/test.kt`:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
+package test
+
+import androidx.compose.foundation.layout.absoluteOffset
+import androidx.compose.foundation.layout.offset
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+
+@Composable
+fun ComposableFunction() {
+    val offsetStateful = remember { mutableStateOf(0.dp) }
+    val yAxis = 10.dp
+
+    Modifier.offset(offsetStateful.value, yAxis)
+    Modifier.absoluteOffset(0.dp, offsetStateful.value)
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can also visit the
+[source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/foundation/foundation-lint/src/test/java/androidx/compose/foundation/lint/NonLambdaOffsetModifierDetectorTest.kt)
+for the unit tests for this check to see additional scenarios.
+
+The above example was automatically extracted from the first unit test
+found for this lint check, `NonLambdaOffsetModifierDetector.nonLambdaOffset_usingStateLocalVariable_shouldWarn`.
+To report a problem with this extracted sample, visit
+https://issuetracker.google.com/issues/new?component=612128.
+
 (##) Including
 
 !!!
@@ -51,17 +98,17 @@ in the cases where the arguments are backed by a `State`.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.foundation:foundation-android:1.9.0-alpha01")
+implementation("androidx.compose.foundation:foundation-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.foundation:foundation-android:1.9.0-alpha01'
+implementation 'androidx.compose.foundation:foundation-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.foundation.android)
 
 # libs.versions.toml
 [versions]
-foundation-android = "1.9.0-alpha01"
+foundation-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -73,11 +120,11 @@ foundation-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.foundation:foundation-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.foundation:foundation-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.foundation:foundation-android](androidx_compose_foundation_foundation-android.md.html).

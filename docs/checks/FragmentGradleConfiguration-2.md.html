@@ -54,7 +54,7 @@ build.gradle:2:Error: Replace with debugImplementation.
 [FragmentGradleConfiguration]
     androidTestImplementation("androidx.fragment:fragment-testing-manifest:1.2.0-beta02")
     -------------------------------------------------------------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -63,10 +63,10 @@ Here is the source file referenced above:
 dependencies {
     androidTestImplementation("androidx.fragment:fragment-testing-manifest:1.2.0-beta02")
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can also visit the
-[source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-testing-manifest-lint/src/test/java/androidx/fragment/testing/manifest/lint/GradleConfigurationDetectorTest.kt)
+You can also visit the source code ([GradleConfigurationDetectorTest.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-testing-manifest-lint/src/test/java/androidx/fragment/testing/manifest/lint/GradleConfigurationDetectorTest.kt)
+[GradleConfigurationDetectorTest.kt](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/fragment/fragment-testing-lint/src/test/java/androidx/fragment/testing/lint/GradleConfigurationDetectorTest.kt)
 for the unit tests for this check to see additional scenarios.
 
 The above example was automatically extracted from the first unit test
@@ -82,17 +82,17 @@ https://issuetracker.google.com/issues/new?component=460964.
 
 ```
 // build.gradle.kts
-implementation("androidx.fragment:fragment-testing-manifest:1.8.6")
+implementation("androidx.fragment:fragment-testing-manifest:1.8.9")
 
 // build.gradle
-implementation 'androidx.fragment:fragment-testing-manifest:1.8.6'
+implementation 'androidx.fragment:fragment-testing-manifest:1.8.9'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.fragment.testing.manifest)
 
 # libs.versions.toml
 [versions]
-fragment-testing-manifest = "1.8.6"
+fragment-testing-manifest = "1.8.9"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -104,7 +104,7 @@ fragment-testing-manifest = {
 }
 ```
 
-1.8.6 is the version this documentation was generated from;
+1.8.9 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.fragment:fragment-testing-manifest](androidx_fragment_fragment-testing-manifest.md.html).

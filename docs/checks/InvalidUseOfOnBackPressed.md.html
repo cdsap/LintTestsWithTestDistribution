@@ -59,7 +59,7 @@ of OnBackPressedCallback.handledOnBackPressed
 [InvalidUseOfOnBackPressed]
     dispatcher.onBackPressed()
     --------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -81,7 +81,7 @@ fun test() {
         }
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/activity/activity-lint/src/test/java/androidx/activity/lint/OnBackPressedDispatcherTest.kt)
@@ -100,17 +100,17 @@ https://issuetracker.google.com/issues/new?component=527362.
 
 ```
 // build.gradle.kts
-implementation("androidx.activity:activity:1.11.0-rc01")
+implementation("androidx.activity:activity:1.13.0-rc01")
 
 // build.gradle
-implementation 'androidx.activity:activity:1.11.0-rc01'
+implementation 'androidx.activity:activity:1.13.0-rc01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.activity)
 
 # libs.versions.toml
 [versions]
-activity = "1.11.0-rc01"
+activity = "1.13.0-rc01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -122,7 +122,7 @@ activity = {
 }
 ```
 
-1.11.0-rc01 is the version this documentation was generated from;
+1.13.0-rc01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.activity:activity](androidx_activity_activity.md.html).

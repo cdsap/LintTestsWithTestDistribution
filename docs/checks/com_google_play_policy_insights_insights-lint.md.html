@@ -1,0 +1,81 @@
+(#) com.google.play.policy.insights:insights-lint
+
+Vendor
+:   Play policy insights beta
+Min
+:   Lint 8.2 to 8.6
+Compiled
+:   Lint 8.7+
+Artifact
+:   com.google.play.policy.insights:insights-lint:0.1.4
+
+(##) Included Issues
+
+|Issue Id                                                            |Issue Description                |
+|--------------------------------------------------------------------|---------------------------------|
+|[AccessibilityPolicy](AccessibilityPolicy.md.html)                  |Accessibility Insights           |
+|[AdvertisingIdPolicy](AdvertisingIdPolicy.md.html)                  |Advertising Id Insights          |
+|[AllFilesAccessPolicy](AllFilesAccessPolicy.md.html)                |All Files Access Insights        |
+|[ExactAlarmPolicy](ExactAlarmPolicy.md.html)                        |Exact Alarm Insights             |
+|[ForegroundServicesPolicy](ForegroundServicesPolicy.md.html)        |Foreground Services Insights     |
+|[FullScreenIntentPolicy](FullScreenIntentPolicy.md.html)            |Full Screen Intent Insights      |
+|[HealthConnectPolicy](HealthConnectPolicy.md.html)                  |Health Connect Insights          |
+|[BackgroundLocationPolicy](BackgroundLocationPolicy.md.html)        |Background Location Insights     |
+|[PackageVisibilityPolicy](PackageVisibilityPolicy.md.html)          |Package/App Visibility Insights  |
+|[PhotoAndVideoPolicy](PhotoAndVideoPolicy.md.html)                  |Photos & Video Insights          |
+|[RequestInstallPackagesPolicy](RequestInstallPackagesPolicy.md.html)|Request Install Packages Insights|
+|[SmsAndCallLogPolicy](SmsAndCallLogPolicy.md.html)                  |SMS/Call Log Insights            |
+|[VpnServicePolicy](VpnServicePolicy.md.html)                        |VPN Service Insights             |
+
+(##) Including
+
+!!!
+   This is not a built-in check. To include it, add the below dependency
+   to your project.
+
+```
+// build.gradle.kts
+implementation("com.google.play.policy.insights:insights-lint:0.1.4")
+
+// build.gradle
+implementation 'com.google.play.policy.insights:insights-lint:0.1.4'
+
+// build.gradle.kts with version catalogs:
+implementation(libs.insights.lint)
+
+# libs.versions.toml
+[versions]
+insights-lint = "0.1.4"
+[libraries]
+# For clarity and text wrapping purposes the following declaration is
+# shown split up across lines, but in TOML it needs to be on a single
+# line (see https://github.com/toml-lang/toml/issues/516) so adjust
+# when pasting into libs.versions.toml:
+insights-lint = {
+    module = "com.google.play.policy.insights:insights-lint",
+    version.ref = "insights-lint"
+}
+```
+
+0.1.4 is the version this documentation was generated from;
+there may be newer versions available.
+
+(##) Changes
+
+* 0.1.3: First version includes AccessibilityPolicy,
+  AdvertisingIdPolicy, AllFilesAccessPolicy, BackgroundLocationPolicy,
+  ExactAlarmPolicy, ForegroundServicesPolicy, FullScreenIntentPolicy,
+  HealthConnectPolicy, PackageVisibilityPolicy, PhotoAndVideoPolicy,
+  RequestInstallPackagesPolicy, SmsAndCallLogPolicy,
+  VpnServicePolicy.
+
+(##) Version Compatibility
+
+There are multiple older versions available of this library:
+
+| Version            | Date     | Issues | Compatible | Compiled      | Requires |
+|-------------------:|----------|-------:|------------|--------------:|---------:|
+|               0.1.4|          |      13|         Yes|           8.7+|8.2 to 8.6|
+|               0.1.3|          |      13|         Yes|           8.7+|8.2 to 8.6|
+
+<!-- Markdeep: --><style class="fallback">body{visibility:hidden;white-space:pre;font-family:monospace}</style><script src="markdeep.min.js" charset="utf-8"></script><script src="https://morgan3d.github.io/markdeep/latest/markdeep.min.js" charset="utf-8"></script><script>window.alreadyProcessedMarkdeep||(document.body.style.visibility="visible")</script>

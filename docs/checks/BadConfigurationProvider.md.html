@@ -52,7 +52,7 @@ Here is an example of lint warnings produced by this check:
 com/example/App.kt:Error: Expected Application subtype to implement
 Configuration.Provider [BadConfigurationProvider]
 1 errors, 0 warnings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here are the relevant source files:
 
@@ -67,7 +67,7 @@ class App: Application() {
 
     }
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 `com/example/CustomProvider.kt`:
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~kotlin linenumbers
@@ -78,7 +78,7 @@ import androidx.work.Configuration
 class Provider: Configuration.Provider {
     override fun getWorkManagerConfiguration(): Configuration = TODO()
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/work/work-lint/src/test/java/androidx/work/lint/BadConfigurationProviderTest.kt)
@@ -97,17 +97,17 @@ https://issuetracker.google.com/issues/new?component=409906.
 
 ```
 // build.gradle.kts
-implementation("androidx.work:work-runtime:2.10.1")
+implementation("androidx.work:work-runtime:2.11.1")
 
 // build.gradle
-implementation 'androidx.work:work-runtime:2.10.1'
+implementation 'androidx.work:work-runtime:2.11.1'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.work.runtime)
 
 # libs.versions.toml
 [versions]
-work-runtime = "2.10.1"
+work-runtime = "2.11.1"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -119,7 +119,7 @@ work-runtime = {
 }
 ```
 
-2.10.1 is the version this documentation was generated from;
+2.11.1 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.work:work-runtime](androidx_work_work-runtime.md.html).

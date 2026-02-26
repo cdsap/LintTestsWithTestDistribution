@@ -60,7 +60,7 @@ inside of Coroutine, please use the suspending setCurrentState()
 function. [TestLifecycleOwnerInCoroutine]
     fun testSetCurrentStateInRunTestWithTimeOut() = runTest(timeout = 5000) {
                                                     -------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -81,7 +81,7 @@ fun testSetCurrentStateInRunTestWithTimeOut() = runTest(timeout = 5000) {
     val owner = TestLifecycleOwner()
     owner.currentState = Lifecycle.State.RESUMED
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/lifecycle/lifecycle-runtime-testing-lint/src/test/java/androidx/lifecycle/runtime/testing/lint/TestLifecycleOwnerInCoroutineDetectorTest.kt)
@@ -100,17 +100,17 @@ https://issuetracker.google.com/issues/new?component=413132.
 
 ```
 // build.gradle.kts
-implementation("androidx.lifecycle:lifecycle-runtime-testing:2.9.0-rc01")
+implementation("androidx.lifecycle:lifecycle-runtime-testing:2.11.0-alpha01")
 
 // build.gradle
-implementation 'androidx.lifecycle:lifecycle-runtime-testing:2.9.0-rc01'
+implementation 'androidx.lifecycle:lifecycle-runtime-testing:2.11.0-alpha01'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.lifecycle.runtime.testing)
 
 # libs.versions.toml
 [versions]
-lifecycle-runtime-testing = "2.9.0-rc01"
+lifecycle-runtime-testing = "2.11.0-alpha01"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -122,7 +122,7 @@ lifecycle-runtime-testing = {
 }
 ```
 
-2.9.0-rc01 is the version this documentation was generated from;
+2.11.0-alpha01 is the version this documentation was generated from;
 there may be newer versions available.
 
 [Additional details about androidx.lifecycle:lifecycle-runtime-testing](androidx_lifecycle_lifecycle-runtime-testing.md.html).

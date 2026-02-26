@@ -27,7 +27,7 @@ Compiled
 Artifact
 :   [androidx.compose.ui:ui-android](androidx_compose_ui_ui-android.md.html)
 Since
-:   1.9.0-alpha01
+:   1.9.0
 Affects
 :   Kotlin and Java files and test sources
 Editing
@@ -41,7 +41,7 @@ Copyright Year
 
 Changes to the Configuration object will not cause
 LocalContext.current.resources reads to be invalidated, so calls to APIs
-suchas Resources.getString() will not be updated when the Configuration
+such as Resources.getString() will not be updated when the Configuration
 changes. Instead, use LocalResources.current to retrieve the Resources -
 this will invalidate callers when the Configuration changes, to ensure
 that these calls reflect the latest values.
@@ -58,7 +58,7 @@ src/test/test.kt:10:Warning: Reading Resources using
 LocalContext.current.resources [LocalContextResourcesRead]
     LocalContext.current.getResources()
     -----------------------------------
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Here is the source file referenced above:
 
@@ -75,8 +75,14 @@ fun Test() {
     LocalContext.current.getResources()
     LocalContext.current.resources.configuration
     LocalContext.current.getResources().getConfiguration()
+    LocalContext.current.getText(-1)
+    LocalContext.current.getString(-1)
+    LocalContext.current.getString(-1, Any())
+    LocalContext.current.getColor(-1)
+    LocalContext.current.getDrawable(-1)
+    LocalContext.current.getColorStateList(-1)
 }
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also visit the
 [source code](https://cs.android.com/androidx/platform/frameworks/support/+/androidx-main:/compose/ui/ui-lint/src/test/java/androidx/compose/ui/lint/LocalContextResourcesConfigurationReadDetectorTest.kt)
@@ -95,17 +101,17 @@ https://issuetracker.google.com/issues/new?component=612128.
 
 ```
 // build.gradle.kts
-implementation("androidx.compose.ui:ui-android:1.9.0-alpha01")
+implementation("androidx.compose.ui:ui-android:1.11.0-alpha06")
 
 // build.gradle
-implementation 'androidx.compose.ui:ui-android:1.9.0-alpha01'
+implementation 'androidx.compose.ui:ui-android:1.11.0-alpha06'
 
 // build.gradle.kts with version catalogs:
 implementation(libs.ui.android)
 
 # libs.versions.toml
 [versions]
-ui-android = "1.9.0-alpha01"
+ui-android = "1.11.0-alpha06"
 [libraries]
 # For clarity and text wrapping purposes the following declaration is
 # shown split up across lines, but in TOML it needs to be on a single
@@ -117,11 +123,11 @@ ui-android = {
 }
 ```
 
-1.9.0-alpha01 is the version this documentation was generated from;
+1.11.0-alpha06 is the version this documentation was generated from;
 there may be newer versions available.
 
 NOTE: These lint checks are **also** made available separate from the main library.
-You can also use `androidx.compose.ui:ui-lint:1.9.0-alpha01`.
+You can also use `androidx.compose.ui:ui-lint:1.11.0-alpha06`.
 
 
 [Additional details about androidx.compose.ui:ui-android](androidx_compose_ui_ui-android.md.html).
