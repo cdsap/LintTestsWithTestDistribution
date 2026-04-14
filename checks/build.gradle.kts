@@ -31,6 +31,6 @@ tasks.withType<Test>().configureEach {
     develocity.testDistribution {
         enabled.set(true) 
          maxLocalExecutors.set(0)
-          maxRemoteExecutors.set(2)
+          maxRemoteExecutors.set(3)
     }
 }
