@@ -16,9 +16,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: ${{ matrix.java-version }}
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
       - name: Test Android Library
-        run: ./gradlew assembleDebug
+        run: ./gradlew test
         env:
           DEVELOCITY_ACCESS_KEY: ${{ secrets.GE_API_KEY }}

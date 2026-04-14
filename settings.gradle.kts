@@ -29,7 +29,8 @@ plugins {
 val isCI = providers.environmentVariable("CI").isPresent
 
 develocity {
-    server = "https://ge.solutions-team.gradle.com"
+    server = "https://34-105-120-196.nip.io/"
+    allowUntrustedServer = true
     buildScan {
         uploadInBackground = !isCI
         publishing.onlyIf { it.isAuthenticated }
