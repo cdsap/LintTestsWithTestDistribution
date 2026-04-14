@@ -21,4 +21,16 @@ dependencies {
     // For a description of the below dependencies, see the main project README
     compileOnly(libs.bundles.lint.api)
     testImplementation(libs.bundles.lint.tests)
+    testImplementation(libs.bundles.lint.api)
+testImplementation("org.junit.vintage:junit-vintage-engine:6.0.3")
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
+     
+    develocity.testDistribution {
+        enabled.set(true) 
+         maxLocalExecutors.set(0)
+          maxRemoteExecutors.set(2)
+    }
 }
